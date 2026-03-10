@@ -41,72 +41,52 @@ function About() {
     });
   };
 
+  // Team members – Indian names
   const teamMembers = [
     { 
-      name: "Alex Johnson", 
-      role: "CEO & Founder", 
+      name: "Rajesh Kumar", 
+      role: "CTO", 
       exp: "15+ years", 
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80",
-      bio: "Former Google engineer with passion for scalable architecture",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80",
+      bio: "Former architect at Infosys, passionate about scalable enterprise solutions",
       expertise: "Strategic Planning & Enterprise Architecture"
     },
     { 
-      name: "Sarah Chen", 
+      name: "Priya Sharma", 
       role: "CTO", 
       exp: "12+ years", 
       image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=688&q=80",
-      bio: "Specializes in AI/ML and enterprise solutions",
-      expertise: "AI & Machine Learning"
-    },
-    { 
-      name: "Mike Rodriguez", 
-      role: "Lead Developer", 
-      exp: "10+ years", 
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80",
-      bio: "Full-stack expert with focus on performance optimization",
-      expertise: "System Architecture & Optimization"
-    },
-    { 
-      name: "Emma Wilson", 
-      role: "UI/UX Director", 
-      exp: "8+ years", 
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=761&q=80",
-      bio: "Award-winning designer with user-centric approach",
-      expertise: "Digital Experience & Design Systems"
-    },
+      bio: "AI/ML specialist with experience at Microsoft and Amazon",
+      expertise: "Artificial Intelligence & Cloud Computing"
+    }
   ];
 
+  // Updated milestones – starting from 2025
   const milestones = [
     { 
-      year: "2014", 
+      year: "2025", 
       title: "Company Founded", 
-      desc: "Started with 3 team members, focused on digital transformation",
+      desc: "LOHS Software established in Visakhapatnam with a vision to transform businesses through technology",
       icon: "🎯"
     },
     { 
-      year: "2016", 
-      title: "Strategic Partnership", 
-      desc: "First Fortune 500 client and enterprise solution delivery",
+      year: "2025", 
+      title: "First Enterprise Client", 
+      desc: "Successfully delivered a complete digital transformation solution for a leading manufacturing firm",
+      icon: "🚀"
+    },
+    { 
+      year: "2025", 
+      title: "Team Expansion", 
+      desc: "Grew to 15+ passionate engineers, designers, and strategists",
+      icon: "👥"
+    },
+    { 
+      year: "2026", 
+      title: "Strategic Partnerships", 
+      desc: "Partnered with top cloud providers and tech innovators to enhance our offerings",
       icon: "🤝"
-    },
-    { 
-      year: "2019", 
-      title: "Global Expansion", 
-      desc: "Opened offices in San Francisco, London, and Singapore",
-      icon: "🌍"
-    },
-    { 
-      year: "2022", 
-      title: "Award Recognition", 
-      desc: "Won 'Best Tech Innovation' award at Tech Excellence 2022",
-      icon: "🏆"
-    },
-    { 
-      year: "2024", 
-      title: "Strategic Growth", 
-      desc: "Expanded to 50+ experts across 15+ countries",
-      icon: "📈"
-    },
+    }
   ];
 
   const values = [
@@ -140,13 +120,6 @@ function About() {
       title: "Client Success", 
       desc: "Your growth and success are our primary metrics"
     },
-  ];
-
-  const stats = [
-    { icon: <FiUsers />, value: 250, suffix: "+", label: "Strategic Partners" },
-    { icon: <FiAward />, value: 99.7, suffix: "%", label: "Client Satisfaction" },
-    { icon: <FiBriefcase />, value: 2, suffix: "B+", label: "Value Created" },
-    { icon: <FiGlobe />, value: 15, suffix: "+", label: "Countries Served" },
   ];
 
   // Animation variants
@@ -188,15 +161,8 @@ function About() {
 
   return (
     <div ref={ref} className="about-container" style={containerStyle}>
-      {/* Wood Grain Background */}
-      <div style={woodGrainBackground} />
-      <div style={woodPatternOverlay} />
-      
-      {/* Stencil Elements */}
-      <div style={stencilElement1}>🚀</div>
-      <div style={stencilElement2}>⚡</div>
-      <div style={stencilElement3}>🎯</div>
-      <div style={stencilElement4}>💼</div>
+      {/* Background Pattern */}
+      <div style={backgroundPatternStyle} />
 
       {/* Hero Section */}
       <motion.section 
@@ -216,14 +182,14 @@ function About() {
               transition={{ duration: 0.8, type: "spring" }}
               style={stencilBadge}
             >
-              EST. 2014
+              EST. 2025
             </motion.div>
             
             <motion.h1 
               variants={fadeInUp}
               style={heroTitleStyle}
             >
-              LOHS <span style={{ color: '#8B4513' }}>SOFTWARE</span>
+              LOHS <span style={{ color: '#c0c0c0' }}>SOFTWARE</span>
             </motion.h1>
             
             <motion.div 
@@ -239,7 +205,7 @@ function About() {
             transition={{ delay: 0.2 }}
             style={heroSubtitleStyle}
           >
-            <span style={{ color: '#A0522D' }}>Pioneering Excellence</span> in Digital Transformation
+            <span style={{ color: '#e0e0e0' }}>Pioneering Excellence</span> in Digital Transformation
           </motion.h2>
           
           <motion.p 
@@ -259,7 +225,7 @@ function About() {
           >
             {[
               { value: "99.7%", label: "Client Satisfaction" },
-              { value: "250+", label: "Strategic Partners" },
+              { value: "25+", label: "Strategic Partners" },
               { value: "$2B+", label: "Value Created" }
             ].map((metric, index) => (
               <motion.div 
@@ -287,65 +253,6 @@ function About() {
             ))}
           </motion.div>
         </div>
-      </motion.section>
-
-      {/* Stats Section */}
-      <motion.section 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={fadeIn}
-        style={statsSectionStyle}
-      >
-        <motion.div 
-          variants={fadeInUp}
-          style={sectionHeaderStyle}
-        >
-          <h2 style={sectionTitleStyle}>Our Strategic Impact</h2>
-          <p style={sectionSubtitleStyle}>Trusted by industry leaders worldwide</p>
-          <motion.div 
-            initial={{ width: 0 }}
-            whileInView={{ width: 80 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            style={sectionDivider}
-          />
-        </motion.div>
-        
-        <motion.div 
-          variants={staggerContainer}
-          style={statsGridStyle}
-        >
-          {stats.map((stat, index) => (
-            <motion.div 
-              key={index}
-              variants={scaleIn}
-              whileHover={{ 
-                y: -10,
-                boxShadow: "0 20px 40px rgba(139, 69, 19, 0.15)"
-              }}
-              style={statCardStyle}
-            >
-              <motion.div 
-                initial={{ rotate: 0 }}
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
-                style={statIconContainer}
-              >
-                {stat.icon}
-              </motion.div>
-              <div 
-                className="counter" 
-                data-target={stat.value} 
-                data-suffix={stat.suffix}
-                style={statNumberStyle}
-              >
-                0
-              </div>
-              <div style={statLabelStyle}>{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
       </motion.section>
 
       {/* Mission & Vision */}
@@ -524,7 +431,7 @@ function About() {
               variants={scaleIn}
               whileHover={{ 
                 y: -5,
-                boxShadow: "0 15px 30px rgba(139, 69, 19, 0.1)"
+                boxShadow: "0 15px 30px rgba(255,255,255,0.1)"
               }}
               style={valueCardStyle}
             >
@@ -544,7 +451,7 @@ function About() {
         </motion.div>
       </section>
 
-      {/* Team Section */}
+      {/* Team Section - two members */}
       <section style={teamSectionStyle}>
         <motion.div 
           initial="hidden"
@@ -599,7 +506,7 @@ function About() {
               <div style={teamInfoStyle}>
                 <h3 style={memberNameStyle}>{member.name}</h3>
                 <motion.p 
-                  whileHover={{ color: '#8B4513' }}
+                  whileHover={{ color: '#ffffff' }}
                   style={memberRoleStyle}
                 >
                   {member.role}
@@ -614,187 +521,34 @@ function About() {
           ))}
         </motion.div>
       </section>
-
-      {/* CTA Section */}
-      <motion.section 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={fadeIn}
-        style={ctaSectionStyle}
-      >
-        <motion.div 
-          variants={scaleIn}
-          style={ctaContentStyle}
-        >
-          <motion.div 
-            animate={{ 
-              rotate: [0, 360],
-              scale: [1, 1.1, 1]
-            }}
-            transition={{ 
-              rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-              scale: { duration: 2, repeat: Infinity }
-            }}
-            style={ctaIcon}
-          >
-            <FiStar size={30} />
-          </motion.div>
-          
-          <motion.h2 
-            variants={fadeInUp}
-            style={ctaTitleStyle}
-          >
-            Ready to Transform Your Business?
-          </motion.h2>
-          
-          <motion.p 
-            variants={fadeInUp}
-            transition={{ delay: 0.1 }}
-            style={ctaSubtitleStyle}
-          >
-            Join hundreds of strategic partners who have accelerated their growth 
-            with our intelligent digital solutions.
-          </motion.p>
-          
-          <motion.div 
-            variants={staggerContainer}
-            style={ctaButtonsStyle}
-          >
-            <motion.button 
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: "0 15px 35px rgba(139, 69, 19, 0.3)"
-              }}
-              whileTap={{ scale: 0.95 }}
-              style={primaryCTAButton}
-            >
-              <FiChevronRight style={{ marginRight: '10px' }} />
-              Start Strategic Consultation
-            </motion.button>
-            
-            <motion.button 
-              whileHover={{ 
-                scale: 1.05,
-                backgroundColor: "#8B4513",
-                color: "#FFF8DC"
-              }}
-              whileTap={{ scale: 0.95 }}
-              style={secondaryCTAButton}
-            >
-              View Case Studies
-            </motion.button>
-          </motion.div>
-        </motion.div>
-      </motion.section>
     </div>
   );
 }
 
-// ========== STYLES ==========
+// ========== UPDATED STYLES ==========
+// Deep blue background with silver/white text
 
 const containerStyle = {
   minHeight: '100vh',
-  background: '#FFF8DC', // Antique white for warm wood-like feel
-  color: '#2C1810', // Dark brown for text
+  background: 'linear-gradient(145deg, #0a1f44 0%, #0b2b5c 100%)',
+  color: '#ffffff',
   position: 'relative',
   overflow: 'hidden',
-  fontFamily: "'Crimson Text', 'Times New Roman', serif" // Classic serif font
+  fontFamily: "'Crimson Text', 'Times New Roman', serif"
 };
 
-// Wood Grain Background
-const woodGrainBackground = {
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  background: `
-    linear-gradient(
-      45deg,
-      transparent 30%,
-      rgba(139, 69, 19, 0.03) 50%,
-      transparent 70%
-    ),
-    repeating-linear-gradient(
-      0deg,
-      rgba(139, 69, 19, 0.03),
-      rgba(139, 69, 19, 0.03) 1px,
-      transparent 1px,
-      transparent 4px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(160, 82, 45, 0.02),
-      rgba(160, 82, 45, 0.02) 1px,
-      transparent 1px,
-      transparent 4px
-    )
-  `,
-  backgroundSize: '400% 400%, 100px 100px, 100px 100px',
-  animation: 'woodGrain 20s ease infinite',
-  pointerEvents: 'none',
-  zIndex: 0
-};
-
-const woodPatternOverlay = {
-  position: 'fixed',
+const backgroundPatternStyle = {
+  position: 'absolute',
   top: 0,
   left: 0,
   right: 0,
   bottom: 0,
   backgroundImage: `
-    radial-gradient(
-      circle at 10% 20%,
-      rgba(205, 133, 63, 0.05) 0%,
-      transparent 20%
-    ),
-    radial-gradient(
-      circle at 90% 80%,
-      rgba(139, 69, 19, 0.05) 0%,
-      transparent 20%
-    )
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.08) 0%, transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(192,192,192,0.06) 0%, transparent 30%),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 8px)
   `,
-  pointerEvents: 'none',
-  zIndex: 0
-};
-
-// Stencil Elements
-const stencilBase = {
-  position: 'absolute',
-  fontSize: '120px',
-  opacity: 0.03,
-  zIndex: 0,
-  pointerEvents: 'none',
-  filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.1))'
-};
-
-const stencilElement1 = {
-  ...stencilBase,
-  top: '10%',
-  left: '5%',
-  transform: 'rotate(-15deg)'
-};
-
-const stencilElement2 = {
-  ...stencilBase,
-  top: '15%',
-  right: '5%',
-  transform: 'rotate(15deg)'
-};
-
-const stencilElement3 = {
-  ...stencilBase,
-  bottom: '20%',
-  left: '10%',
-  transform: 'rotate(10deg)'
-};
-
-const stencilElement4 = {
-  ...stencilBase,
-  bottom: '15%',
-  right: '10%',
-  transform: 'rotate(-10deg)'
+  pointerEvents: 'none'
 };
 
 // Hero Section
@@ -825,21 +579,23 @@ const stencilBadge = {
   top: '-30px',
   left: '50%',
   transform: 'translateX(-50%)',
-  background: 'linear-gradient(45deg, #8B4513, #A0522D)',
-  color: '#FFF8DC',
+  background: 'linear-gradient(45deg, #ffffff, #e0e0e0)',
+  color: '#0a1f44',
   padding: '8px 20px',
   borderRadius: '20px',
   fontSize: '14px',
   fontWeight: '600',
   letterSpacing: '1px',
-  border: '2px solid #D2691E',
-  boxShadow: '0 4px 15px rgba(139, 69, 19, 0.2)'
+  border: '2px solid #c0c0c0',
+  boxShadow: '0 4px 15px rgba(255,255,255,0.2)'
 };
 
 const heroTitleStyle = {
   fontSize: 'clamp(3rem, 6vw, 5rem)',
   fontWeight: '700',
-  color: '#2C1810',
+  background: 'linear-gradient(135deg, #ffffff, #c0c0c0)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
   letterSpacing: '-0.5px',
   marginBottom: '20px',
   textTransform: 'uppercase'
@@ -848,16 +604,16 @@ const heroTitleStyle = {
 const heroDivider = {
   width: '150px',
   height: '3px',
-  background: 'linear-gradient(90deg, #8B4513, #D2691E, #A0522D)',
+  background: 'linear-gradient(90deg, #ffffff, #c0c0c0, #e0e0e0)',
   margin: '0 auto',
   borderRadius: '2px',
-  boxShadow: '0 2px 8px rgba(139, 69, 19, 0.3)'
+  boxShadow: '0 2px 8px rgba(255,255,255,0.3)'
 };
 
 const heroSubtitleStyle = {
   fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
   fontWeight: '600',
-  color: '#2C1810',
+  color: '#e0e0e0',
   marginBottom: '30px',
   lineHeight: '1.3',
   fontFamily: "'Playfair Display', serif",
@@ -867,7 +623,7 @@ const heroSubtitleStyle = {
 const heroDescriptionStyle = {
   fontSize: '1.3rem',
   lineHeight: '1.8',
-  color: '#5D4037',
+  color: '#d1d5db',
   maxWidth: '800px',
   margin: '0 auto 50px',
   fontWeight: '400',
@@ -887,17 +643,17 @@ const heroMetricItem = {
   textAlign: 'center',
   position: 'relative',
   padding: '20px',
-  background: 'rgba(255, 248, 220, 0.7)',
+  background: '#ffffff',
   borderRadius: '15px',
-  border: '1px solid rgba(139, 69, 19, 0.1)',
-  boxShadow: '0 10px 30px rgba(139, 69, 19, 0.1)',
+  border: '1px solid #e0e0e0',
+  boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
   minWidth: '200px'
 };
 
 const heroMetricNumber = {
   fontSize: '3.5rem',
   fontWeight: '800',
-  background: 'linear-gradient(45deg, #8B4513, #D2691E)',
+  background: 'linear-gradient(45deg, #0a1f44, #1e3a8a)',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
   marginBottom: '10px'
@@ -905,7 +661,7 @@ const heroMetricNumber = {
 
 const heroMetricLabel = {
   fontSize: '1.1rem',
-  color: '#5D4037',
+  color: '#2c3e50',
   fontWeight: '600',
   marginBottom: '15px',
   letterSpacing: '0.5px'
@@ -913,7 +669,7 @@ const heroMetricLabel = {
 
 const metricUnderline = {
   height: '2px',
-  background: 'linear-gradient(90deg, #8B4513, #D2691E)',
+  background: 'linear-gradient(90deg, #0a1f44, #1e3a8a)',
   margin: '0 auto',
   borderRadius: '1px'
 };
@@ -929,14 +685,15 @@ const sectionHeaderStyle = {
 const sectionTitleStyle = {
   fontSize: '3.2rem',
   fontWeight: '700',
-  color: '#2C1810',
+  color: '#ffffff',
   marginBottom: '20px',
-  fontFamily: "'Playfair Display', serif"
+  fontFamily: "'Playfair Display', serif",
+  textShadow: '0 2px 5px rgba(0,0,0,0.3)'
 };
 
 const sectionSubtitleStyle = {
   fontSize: '1.3rem',
-  color: '#5D4037',
+  color: '#e0e0e0',
   maxWidth: '600px',
   margin: '0 auto 20px',
   fontFamily: "'Crimson Text', serif",
@@ -946,65 +703,10 @@ const sectionSubtitleStyle = {
 const sectionDivider = {
   width: '80px',
   height: '4px',
-  background: 'linear-gradient(90deg, #8B4513, #D2691E)',
+  background: 'linear-gradient(90deg, #ffffff, #c0c0c0)',
   margin: '0 auto',
   borderRadius: '2px',
-  boxShadow: '0 2px 8px rgba(139, 69, 19, 0.3)'
-};
-
-// Stats Section
-const statsSectionStyle = {
-  padding: '120px 5%',
-  position: 'relative',
-  zIndex: 1
-};
-
-const statsGridStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-  gap: '30px',
-  maxWidth: '1200px',
-  margin: '0 auto',
-  position: 'relative',
-  zIndex: 2
-};
-
-const statCardStyle = {
-  background: 'rgba(255, 248, 220, 0.9)',
-  borderRadius: '20px',
-  padding: '40px 30px',
-  border: '2px solid rgba(139, 69, 19, 0.15)',
-  boxShadow: '0 15px 35px rgba(139, 69, 19, 0.1)',
-  textAlign: 'center',
-  position: 'relative',
-  overflow: 'hidden',
-  backdropFilter: 'blur(10px)'
-};
-
-const statIconContainer = {
-  marginBottom: '25px',
-  color: '#8B4513',
-  fontSize: '48px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '80px'
-};
-
-const statNumberStyle = {
-  fontSize: '3.5rem',
-  fontWeight: '800',
-  color: '#2C1810',
-  marginBottom: '15px',
-  fontFamily: "'Playfair Display', serif"
-};
-
-const statLabelStyle = {
-  fontSize: '1.2rem',
-  color: '#5D4037',
-  fontWeight: '600',
-  marginBottom: '15px',
-  letterSpacing: '0.5px'
+  boxShadow: '0 2px 8px rgba(255,255,255,0.3)'
 };
 
 // Mission Section
@@ -1025,11 +727,11 @@ const missionContentStyle = {
 };
 
 const missionCard = {
-  background: 'linear-gradient(135deg, rgba(139, 69, 19, 0.05) 0%, rgba(160, 82, 45, 0.05) 100%)',
+  background: '#ffffff',
   borderRadius: '25px',
   padding: '50px 40px',
-  border: '2px solid rgba(139, 69, 19, 0.15)',
-  boxShadow: '0 20px 40px rgba(139, 69, 19, 0.1)',
+  border: '2px solid #e0e0e0',
+  boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
   textAlign: 'center',
   position: 'relative',
   overflow: 'hidden'
@@ -1038,21 +740,21 @@ const missionCard = {
 const missionIcon = {
   width: '80px',
   height: '80px',
-  background: 'linear-gradient(135deg, #8B4513, #D2691E)',
+  background: 'linear-gradient(135deg, #0a1f44, #1e3a8a)',
   borderRadius: '50%',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   margin: '0 auto 30px',
-  color: '#FFF8DC',
+  color: '#ffffff',
   fontSize: '32px',
-  border: '3px solid rgba(255, 248, 220, 0.3)'
+  border: '3px solid #c0c0c0'
 };
 
 const missionTitle = {
   fontSize: '2.2rem',
   fontWeight: '700',
-  color: '#2C1810',
+  color: '#0a1f44',
   marginBottom: '25px',
   fontFamily: "'Playfair Display', serif"
 };
@@ -1060,7 +762,7 @@ const missionTitle = {
 const missionText = {
   fontSize: '1.15rem',
   lineHeight: '1.8',
-  color: '#5D4037',
+  color: '#2c3e50',
   maxWidth: '400px',
   margin: '0 auto',
   fontFamily: "'Crimson Text', serif"
@@ -1070,8 +772,8 @@ const missionArrow = {
   position: 'absolute',
   bottom: '20px',
   right: '20px',
-  color: '#8B4513',
-  background: 'rgba(139, 69, 19, 0.1)',
+  color: '#0a1f44',
+  background: 'rgba(10,31,68,0.1)',
   borderRadius: '50%',
   width: '40px',
   height: '40px',
@@ -1081,11 +783,11 @@ const missionArrow = {
 };
 
 const visionCard = {
-  background: 'linear-gradient(135deg, rgba(210, 105, 30, 0.05) 0%, rgba(139, 69, 19, 0.05) 100%)',
+  background: '#ffffff',
   borderRadius: '25px',
   padding: '50px 40px',
-  border: '2px solid rgba(210, 105, 30, 0.15)',
-  boxShadow: '0 20px 40px rgba(210, 105, 30, 0.1)',
+  border: '2px solid #e0e0e0',
+  boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
   textAlign: 'center',
   position: 'relative',
   overflow: 'hidden'
@@ -1094,21 +796,21 @@ const visionCard = {
 const visionIcon = {
   width: '80px',
   height: '80px',
-  background: 'linear-gradient(135deg, #D2691E, #8B4513)',
+  background: 'linear-gradient(135deg, #0a1f44, #1e3a8a)',
   borderRadius: '50%',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   margin: '0 auto 30px',
-  color: '#FFF8DC',
+  color: '#ffffff',
   fontSize: '32px',
-  border: '3px solid rgba(255, 248, 220, 0.3)'
+  border: '3px solid #c0c0c0'
 };
 
 const visionTitle = {
   fontSize: '2.2rem',
   fontWeight: '700',
-  color: '#2C1810',
+  color: '#0a1f44',
   marginBottom: '25px',
   fontFamily: "'Playfair Display', serif"
 };
@@ -1116,7 +818,7 @@ const visionTitle = {
 const visionText = {
   fontSize: '1.15rem',
   lineHeight: '1.8',
-  color: '#5D4037',
+  color: '#2c3e50',
   maxWidth: '400px',
   margin: '0 auto',
   fontFamily: "'Crimson Text', serif"
@@ -1126,8 +828,8 @@ const visionArrow = {
   position: 'absolute',
   bottom: '20px',
   right: '20px',
-  color: '#D2691E',
-  background: 'rgba(210, 105, 30, 0.1)',
+  color: '#0a1f44',
+  background: 'rgba(10,31,68,0.1)',
   borderRadius: '50%',
   width: '40px',
   height: '40px',
@@ -1139,7 +841,6 @@ const visionArrow = {
 // Timeline Section
 const timelineSectionStyle = {
   padding: '120px 5%',
-  background: 'rgba(245, 235, 215, 0.3)',
   position: 'relative',
   zIndex: 1
 };
@@ -1155,14 +856,13 @@ const timelineContainer = {
 };
 
 const milestoneCardStyle = {
-  background: 'rgba(255, 248, 220, 0.95)',
+  background: '#ffffff',
   borderRadius: '20px',
   padding: '40px 30px',
-  border: '2px solid rgba(139, 69, 19, 0.15)',
-  boxShadow: '0 15px 35px rgba(139, 69, 19, 0.1)',
+  border: '2px solid #e0e0e0',
+  boxShadow: '0 15px 35px rgba(0,0,0,0.3)',
   position: 'relative',
-  overflow: 'hidden',
-  backdropFilter: 'blur(10px)'
+  overflow: 'hidden'
 };
 
 const milestoneHeaderStyle = {
@@ -1173,15 +873,15 @@ const milestoneHeaderStyle = {
 };
 
 const yearBadge = {
-  background: 'linear-gradient(45deg, #8B4513, #A0522D)',
-  color: '#FFF8DC',
+  background: 'linear-gradient(45deg, #0a1f44, #1e3a8a)',
+  color: '#ffffff',
   padding: '12px 30px',
   borderRadius: '25px',
   fontSize: '1.2rem',
   fontWeight: '700',
   letterSpacing: '1px',
-  border: '2px solid #D2691E',
-  boxShadow: '0 5px 15px rgba(139, 69, 19, 0.3)'
+  border: '2px solid #c0c0c0',
+  boxShadow: '0 5px 15px rgba(0,0,0,0.3)'
 };
 
 const timelineIcon = {
@@ -1197,13 +897,13 @@ const milestoneContentStyle = {
 const milestoneTitleStyle = {
   fontSize: '1.7rem',
   fontWeight: '700',
-  color: '#2C1810',
+  color: '#0a1f44',
   marginBottom: '15px',
   fontFamily: "'Playfair Display', serif"
 };
 
 const milestoneDescStyle = {
-  color: '#5D4037',
+  color: '#2c3e50',
   lineHeight: '1.7',
   fontSize: '1.05rem',
   fontFamily: "'Crimson Text', serif"
@@ -1214,7 +914,7 @@ const milestoneConnector = {
   right: '25px',
   bottom: '25px',
   height: '2px',
-  background: 'linear-gradient(90deg, #8B4513, #D2691E)',
+  background: 'linear-gradient(90deg, #0a1f44, #1e3a8a)',
   borderRadius: '1px'
 };
 
@@ -1236,15 +936,14 @@ const valuesGridStyle = {
 };
 
 const valueCardStyle = {
-  background: 'rgba(255, 248, 220, 0.95)',
+  background: '#ffffff',
   borderRadius: '20px',
   padding: '45px 35px',
-  border: '2px solid rgba(139, 69, 19, 0.15)',
-  boxShadow: '0 15px 35px rgba(139, 69, 19, 0.1)',
+  border: '2px solid #e0e0e0',
+  boxShadow: '0 15px 35px rgba(0,0,0,0.3)',
   textAlign: 'center',
   position: 'relative',
-  overflow: 'hidden',
-  backdropFilter: 'blur(10px)'
+  overflow: 'hidden'
 };
 
 const valueIconContainer = {
@@ -1254,27 +953,27 @@ const valueIconContainer = {
 const valueIconCircle = {
   width: '90px',
   height: '90px',
-  background: 'rgba(139, 69, 19, 0.1)',
+  background: 'rgba(10,31,68,0.1)',
   borderRadius: '50%',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   margin: '0 auto',
-  color: '#8B4513',
+  color: '#0a1f44',
   fontSize: '36px',
-  border: '3px solid rgba(139, 69, 19, 0.2)'
+  border: '3px solid rgba(10,31,68,0.2)'
 };
 
 const valueTitleStyle = {
   fontSize: '1.8rem',
   fontWeight: '700',
-  color: '#2C1810',
+  color: '#0a1f44',
   marginBottom: '20px',
   fontFamily: "'Playfair Display', serif"
 };
 
 const valueDescStyle = {
-  color: '#5D4037',
+  color: '#2c3e50',
   lineHeight: '1.7',
   fontSize: '1.05rem',
   marginBottom: '20px',
@@ -1284,34 +983,32 @@ const valueDescStyle = {
 // Team Section
 const teamSectionStyle = {
   padding: '120px 5%',
-  background: 'rgba(245, 235, 215, 0.3)',
   position: 'relative',
   zIndex: 1
 };
 
 const teamGridStyle = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
   gap: '40px',
-  maxWidth: '1400px',
+  maxWidth: '800px',
   margin: '0 auto',
   position: 'relative',
   zIndex: 2
 };
 
 const teamCardStyle = {
-  background: 'rgba(255, 248, 220, 0.95)',
+  background: '#ffffff',
   borderRadius: '25px',
   padding: '35px',
-  border: '2px solid rgba(139, 69, 19, 0.15)',
-  boxShadow: '0 20px 40px rgba(139, 69, 19, 0.1)',
+  border: '2px solid #e0e0e0',
+  boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   textAlign: 'center',
   position: 'relative',
-  overflow: 'hidden',
-  backdropFilter: 'blur(10px)'
+  overflow: 'hidden'
 };
 
 const teamImageContainer = {
@@ -1321,8 +1018,8 @@ const teamImageContainer = {
   marginBottom: '30px',
   borderRadius: '50%',
   overflow: 'hidden',
-  border: '4px solid rgba(139, 69, 19, 0.2)',
-  boxShadow: '0 10px 25px rgba(139, 69, 19, 0.2)'
+  border: '4px solid #c0c0c0',
+  boxShadow: '0 10px 25px rgba(0,0,0,0.2)'
 };
 
 const teamImageStyle = {
@@ -1339,7 +1036,7 @@ const teamImageOverlay = {
   left: 0,
   right: 0,
   bottom: 0,
-  background: 'rgba(139, 69, 19, 0.9)',
+  background: 'rgba(10,31,68,0.9)',
   display: 'flex',
   alignItems: 'flex-end',
   justifyContent: 'center',
@@ -1350,14 +1047,14 @@ const teamImageOverlay = {
 };
 
 const expBadge = {
-  color: '#FFF8DC',
+  color: '#0a1f44',
   fontWeight: '700',
-  background: '#D2691E',
+  background: '#ffffff',
   padding: '10px 25px',
   borderRadius: '25px',
   fontSize: '1.1rem',
   letterSpacing: '0.5px',
-  boxShadow: '0 5px 15px rgba(0, 0, 0, 0.2)'
+  boxShadow: '0 5px 15px rgba(0,0,0,0.2)'
 };
 
 const teamInfoStyle = {
@@ -1368,13 +1065,13 @@ const teamInfoStyle = {
 const memberNameStyle = {
   fontSize: '1.8rem',
   fontWeight: '700',
-  color: '#2C1810',
+  color: '#0a1f44',
   marginBottom: '10px',
   fontFamily: "'Playfair Display', serif"
 };
 
 const memberRoleStyle = {
-  color: '#8B4513',
+  color: '#0a1f44',
   fontWeight: '600',
   marginBottom: '20px',
   fontSize: '1.2rem',
@@ -1382,7 +1079,7 @@ const memberRoleStyle = {
 };
 
 const memberBioStyle = {
-  color: '#5D4037',
+  color: '#2c3e50',
   lineHeight: '1.7',
   marginBottom: '25px',
   fontSize: '1rem',
@@ -1391,109 +1088,16 @@ const memberBioStyle = {
 };
 
 const expertiseBadge = {
-  color: '#5D4037',
+  color: '#2c3e50',
   fontSize: '15px',
   fontWeight: '600',
   padding: '12px 20px',
-  background: 'rgba(139, 69, 19, 0.08)',
+  background: 'rgba(10,31,68,0.08)',
   borderRadius: '20px',
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  border: '1px solid rgba(139, 69, 19, 0.2)'
-};
-
-// CTA Section
-const ctaSectionStyle = {
-  padding: '120px 5%',
-  background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)',
-  position: 'relative',
-  zIndex: 1,
-  overflow: 'hidden'
-};
-
-const ctaContentStyle = {
-  textAlign: 'center',
-  maxWidth: '800px',
-  margin: '0 auto',
-  padding: '70px 50px',
-  background: 'rgba(255, 248, 220, 0.95)',
-  borderRadius: '30px',
-  border: '2px solid rgba(255, 248, 220, 0.2)',
-  boxShadow: '0 30px 60px rgba(0, 0, 0, 0.25)',
-  position: 'relative',
-  zIndex: 2,
-  backdropFilter: 'blur(10px)'
-};
-
-const ctaIcon = {
-  width: '90px',
-  height: '90px',
-  background: 'linear-gradient(135deg, #8B4513, #D2691E)',
-  borderRadius: '25px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: '#FFF8DC',
-  fontSize: '36px',
-  margin: '0 auto 40px',
-  boxShadow: '0 15px 35px rgba(139, 69, 19, 0.4)',
-  border: '3px solid rgba(255, 248, 220, 0.3)'
-};
-
-const ctaTitleStyle = {
-  fontSize: '3rem',
-  fontWeight: '700',
-  color: '#2C1810',
-  marginBottom: '25px',
-  fontFamily: "'Playfair Display', serif"
-};
-
-const ctaSubtitleStyle = {
-  fontSize: '1.3rem',
-  color: '#5D4037',
-  marginBottom: '50px',
-  lineHeight: '1.7',
-  maxWidth: '600px',
-  margin: '0 auto',
-  fontFamily: "'Crimson Text', serif"
-};
-
-const ctaButtonsStyle = {
-  display: 'flex',
-  gap: '25px',
-  justifyContent: 'center',
-  flexWrap: 'wrap'
-};
-
-const primaryCTAButton = {
-  padding: '22px 45px',
-  fontSize: '1.2rem',
-  fontWeight: '700',
-  color: '#FFF8DC',
-  background: 'linear-gradient(45deg, #8B4513, #D2691E)',
-  border: 'none',
-  borderRadius: '15px',
-  cursor: 'pointer',
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  boxShadow: '0 15px 35px rgba(139, 69, 19, 0.4)',
-  letterSpacing: '0.5px',
-  fontFamily: "'Crimson Text', serif"
-};
-
-const secondaryCTAButton = {
-  padding: '22px 45px',
-  fontSize: '1.2rem',
-  fontWeight: '700',
-  color: '#8B4513',
-  background: 'transparent',
-  border: '3px solid #793d12',
-  borderRadius: '15px',
-  cursor: 'pointer',
-  letterSpacing: '0.5px',
-  fontFamily: "'Crimson Text', serif"
+  border: '1px solid rgba(10,31,68,0.2)'
 };
 
 export default About;

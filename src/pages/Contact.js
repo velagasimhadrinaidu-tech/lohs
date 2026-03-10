@@ -46,7 +46,7 @@ function Contact() {
       "I can help you with technical support, pricing inquiries, or general questions.",
       "We typically respond to emails within 24 hours.",
       "Would you like to schedule a call with our sales team?",
-      "You can reach our support team at support@lohssoftwaresolutions.com"
+      "You can reach our support team at lohssoftwaresolutions@gmail.com"
     ];
 
     const botResponse = {
@@ -67,7 +67,7 @@ function Contact() {
     }
   };
 
-  // SVG Icons
+  // SVG Icons (unchanged, but colors will adapt via fill)
   const EmailIcon = () => (
     <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
       <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
@@ -110,15 +110,15 @@ function Contact() {
     </svg>
   );
 
-  // Styles
+  // Updated styles with deep blue background and silver/white text
   const containerStyle = {
     minHeight: '100vh',
-    background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
+    background: 'linear-gradient(145deg, #0a1f44 0%, #0b2b5c 100%)',
     padding: '60px 20px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    fontFamily: "'Crimson Text', 'Times New Roman', serif",
     position: 'relative',
     overflow: 'hidden'
   };
@@ -129,8 +129,11 @@ function Contact() {
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundImage: `radial-gradient(circle at 25% 25%, rgba(56, 189, 248, 0.1) 0%, transparent 55%),
-                      radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 55%)`,
+    backgroundImage: `
+      radial-gradient(circle at 10% 20%, rgba(255,255,255,0.08) 0%, transparent 30%),
+      radial-gradient(circle at 90% 80%, rgba(192,192,192,0.06) 0%, transparent 30%),
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 8px)
+    `,
     pointerEvents: 'none'
   };
 
@@ -138,12 +141,12 @@ function Contact() {
     display: 'flex',
     maxWidth: '1200px',
     width: '100%',
-    background: 'rgba(15, 23, 42, 0.7)',
+    background: 'rgba(255,255,255,0.1)',
     backdropFilter: 'blur(10px)',
     borderRadius: '24px',
     overflow: 'hidden',
-    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
-    border: '1px solid rgba(255, 255, 255, 0.1)',
+    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4)',
+    border: '1px solid rgba(255,255,255,0.2)',
     animation: 'slideUp 0.8s ease-out',
     zIndex: 1,
     position: 'relative'
@@ -152,8 +155,8 @@ function Contact() {
   const contactInfoPanelStyle = {
     flex: 1,
     padding: '60px',
-    background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%)',
-    borderRight: '1px solid rgba(255, 255, 255, 0.1)',
+    background: 'rgba(255,255,255,0.05)',
+    borderRight: '1px solid rgba(255,255,255,0.1)',
     position: 'relative',
     overflow: 'hidden'
   };
@@ -164,17 +167,18 @@ function Contact() {
 
   const contactTitleStyle = {
     fontSize: '3rem',
-    background: 'linear-gradient(135deg, #38bdf8 0%, #8b5cf6 100%)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
+    color: '#ffffff',
     marginBottom: '20px',
-    fontWeight: '800'
+    fontWeight: '700',
+    fontFamily: "'Playfair Display', serif",
+    textShadow: '0 2px 5px rgba(0,0,0,0.3)'
   };
 
   const contactSubtitleStyle = {
     fontSize: '1.1rem',
-    color: '#94a3b8',
-    lineHeight: '1.6'
+    color: '#e0e0e0',
+    lineHeight: '1.6',
+    fontFamily: "'Crimson Text', serif"
   };
 
   const contactDetailsStyle = {
@@ -187,9 +191,10 @@ function Contact() {
     display: 'flex',
     gap: '20px',
     padding: '25px',
-    background: 'rgba(30, 41, 59, 0.5)',
+    background: '#ffffff',
     borderRadius: '16px',
-    border: '1px solid rgba(255, 255, 255, 0.1)',
+    border: '1px solid rgba(255,255,255,0.6)',
+    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
     transition: 'all 0.3s ease',
     position: 'relative',
     overflow: 'hidden'
@@ -198,12 +203,13 @@ function Contact() {
   const contactIconStyle = {
     width: '60px',
     height: '60px',
-    background: 'linear-gradient(135deg, #38bdf8 0%, #8b5cf6 100%)',
+    background: 'linear-gradient(135deg, #0a1f44, #1e3a8a)',
     borderRadius: '14px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
+    color: '#ffffff',
     transition: 'transform 0.3s ease'
   };
 
@@ -212,41 +218,44 @@ function Contact() {
   };
 
   const contactItemTitleStyle = {
-    color: '#f8fafc',
+    color: '#0a1f44',
     fontSize: '1.25rem',
     marginBottom: '10px',
-    fontWeight: '600'
+    fontWeight: '600',
+    fontFamily: "'Playfair Display', serif"
   };
 
   const contactItemTextStyle = {
-    color: '#94a3b8',
+    color: '#2c3e50',
     marginBottom: '8px',
-    lineHeight: '1.5'
+    lineHeight: '1.5',
+    fontFamily: "'Crimson Text', serif"
   };
 
   const contactLinkStyle = {
-    color: '#38bdf8',
+    color: '#1e3a8a',
     textDecoration: 'none',
     fontWeight: '500',
     display: 'inline-flex',
     alignItems: 'center',
     gap: '8px',
-    transition: 'all 0.3s ease'
+    transition: 'all 0.3s ease',
+    fontFamily: "'Crimson Text', serif"
   };
 
   const contactFormPanelStyle = {
     flex: 1,
     padding: '60px',
-    background: 'rgba(15, 23, 42, 0.8)'
+    background: 'rgba(255,255,255,0.05)'
   };
 
   const formTitleStyle = {
     fontSize: '2.5rem',
-    background: 'linear-gradient(135deg, #38bdf8 0%, #8b5cf6 100%)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
+    color: '#ffffff',
     marginBottom: '40px',
-    fontWeight: '700'
+    fontWeight: '700',
+    fontFamily: "'Playfair Display', serif",
+    textShadow: '0 2px 5px rgba(0,0,0,0.3)'
   };
 
   const formGroupStyle = {
@@ -255,54 +264,58 @@ function Contact() {
 
   const labelStyle = {
     display: 'block',
-    color: '#cbd5e1',
+    color: '#e0e0e0',
     fontWeight: '500',
     marginBottom: '10px',
-    fontSize: '0.95rem'
+    fontSize: '0.95rem',
+    fontFamily: "'Crimson Text', serif"
   };
 
   const inputStyle = {
     width: '100%',
     padding: '16px 20px',
-    border: '1px solid rgba(255, 255, 255, 0.1)',
+    border: '1px solid rgba(255,255,255,0.3)',
     borderRadius: '12px',
     fontSize: '1rem',
     transition: 'all 0.3s ease',
-    background: 'rgba(30, 41, 59, 0.5)',
-    color: '#f8fafc',
-    boxSizing: 'border-box'
+    background: 'rgba(255,255,255,0.1)',
+    color: '#ffffff',
+    boxSizing: 'border-box',
+    fontFamily: "'Crimson Text', serif"
   };
 
   const textareaStyle = {
     ...inputStyle,
     resize: 'vertical',
     minHeight: '150px',
-    fontFamily: 'inherit'
+    fontFamily: "'Crimson Text', serif"
   };
 
   const buttonStyle = {
     width: '100%',
     padding: '18px',
-    background: 'linear-gradient(135deg, #38bdf8 0%, #8b5cf6 100%)',
-    color: 'white',
+    background: 'linear-gradient(135deg, #ffffff, #e0e0e0)',
+    color: '#0a1f44',
     border: 'none',
     borderRadius: '12px',
     fontSize: '1.1rem',
-    fontWeight: '600',
+    fontWeight: '700',
     cursor: 'pointer',
     transition: 'all 0.3s ease',
     position: 'relative',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    fontFamily: "'Crimson Text', serif"
   };
 
   const successStyle = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '10px'
+    gap: '10px',
+    color: '#0a1f44'
   };
 
-  // Chat Widget Styles
+  // Chat Widget Styles (updated to match theme)
   const chatButtonStyle = {
     position: 'fixed',
     bottom: '30px',
@@ -310,14 +323,14 @@ function Contact() {
     width: '60px',
     height: '60px',
     borderRadius: '50%',
-    background: 'linear-gradient(135deg, #38bdf8 0%, #8b5cf6 100%)',
+    background: 'linear-gradient(135deg, #ffffff, #e0e0e0)',
     border: 'none',
-    color: 'white',
+    color: '#0a1f44',
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    boxShadow: '0 10px 30px rgba(56, 189, 248, 0.4)',
+    boxShadow: '0 10px 30px rgba(0,0,0,0.4)',
     zIndex: 1000,
     animation: 'pulse 2s infinite'
   };
@@ -328,11 +341,10 @@ function Contact() {
     right: '30px',
     width: '350px',
     height: '500px',
-    background: 'rgba(15, 23, 42, 0.95)',
-    backdropFilter: 'blur(10px)',
+    background: '#ffffff',
     borderRadius: '20px',
-    border: '1px solid rgba(255, 255, 255, 0.1)',
-    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+    border: '1px solid rgba(255,255,255,0.8)',
+    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
     display: 'flex',
     flexDirection: 'column',
     zIndex: 1000,
@@ -345,26 +357,28 @@ function Contact() {
 
   const chatHeaderStyle = {
     padding: '20px',
-    background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%)',
-    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+    background: 'linear-gradient(135deg, #0a1f44, #0b2b5c)',
+    borderBottom: '1px solid rgba(255,255,255,0.2)',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    color: '#ffffff'
   };
 
   const chatTitleStyle = {
-    color: '#f8fafc',
+    color: '#ffffff',
     fontSize: '1.2rem',
     fontWeight: '600',
     display: 'flex',
     alignItems: 'center',
-    gap: '10px'
+    gap: '10px',
+    fontFamily: "'Playfair Display', serif"
   };
 
   const closeButtonStyle = {
     background: 'none',
     border: 'none',
-    color: '#94a3b8',
+    color: '#ffffff',
     cursor: 'pointer',
     padding: '5px'
   };
@@ -375,40 +389,44 @@ function Contact() {
     overflowY: 'auto',
     display: 'flex',
     flexDirection: 'column',
-    gap: '15px'
+    gap: '15px',
+    background: '#f8fafc'
   };
 
   const chatMessageStyle = (isBot) => ({
     maxWidth: '80%',
     padding: '12px 16px',
     borderRadius: '18px',
-    background: isBot ? 'rgba(30, 41, 59, 0.8)' : 'linear-gradient(135deg, #38bdf8 0%, #8b5cf6 100%)',
-    color: isBot ? '#f8fafc' : 'white',
+    background: isBot ? '#e0e0e0' : 'linear-gradient(135deg, #0a1f44, #1e3a8a)',
+    color: isBot ? '#0a1f44' : '#ffffff',
     alignSelf: isBot ? 'flex-start' : 'flex-end',
-    border: isBot ? '1px solid rgba(255, 255, 255, 0.1)' : 'none',
-    animation: 'fadeIn 0.3s ease'
+    border: isBot ? '1px solid #c0c0c0' : 'none',
+    animation: 'fadeIn 0.3s ease',
+    fontFamily: "'Crimson Text', serif"
   });
 
   const chatInputContainerStyle = {
     padding: '20px',
-    borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+    borderTop: '1px solid rgba(10,31,68,0.2)',
     display: 'flex',
-    gap: '10px'
+    gap: '10px',
+    background: '#ffffff'
   };
 
   const chatInputStyle = {
     flex: 1,
     padding: '12px 16px',
-    background: 'rgba(30, 41, 59, 0.5)',
-    border: '1px solid rgba(255, 255, 255, 0.1)',
+    background: '#f0f0f0',
+    border: '1px solid #c0c0c0',
     borderRadius: '12px',
-    color: '#f8fafc',
-    fontSize: '0.95rem'
+    color: '#0a1f44',
+    fontSize: '0.95rem',
+    fontFamily: "'Crimson Text', serif"
   };
 
   const chatSendButtonStyle = {
     padding: '12px 20px',
-    background: 'linear-gradient(135deg, #38bdf8 0%, #8b5cf6 100%)',
+    background: 'linear-gradient(135deg, #0a1f44, #1e3a8a)',
     border: 'none',
     borderRadius: '12px',
     color: 'white',
@@ -477,13 +495,13 @@ function Contact() {
     
     @keyframes pulse {
       0% {
-        box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
+        box-shadow: 0 10px 30px rgba(255,255,255,0.3);
       }
       50% {
-        box-shadow: 0 10px 40px rgba(56, 189, 248, 0.6);
+        box-shadow: 0 10px 40px rgba(255,255,255,0.5);
       }
       100% {
-        box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
+        box-shadow: 0 10px 30px rgba(255,255,255,0.3);
       }
     }
     
@@ -512,8 +530,8 @@ function Contact() {
     
     .contact-item:hover {
       transform: translateY(-5px);
-      border-color: rgba(56, 189, 248, 0.3);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border-color: #ffffff;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
     
     .contact-item:hover .contact-icon {
@@ -521,21 +539,22 @@ function Contact() {
     }
     
     .contact-link:hover {
-      color: #8b5cf6;
+      color: #0a1f44;
       gap: 12px;
     }
     
     .form-input:focus,
     .form-textarea:focus {
       outline: none;
-      border-color: #38bdf8;
-      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+      border-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.2);
       transform: translateY(-2px);
+      background: rgba(255,255,255,0.15);
     }
     
     .submit-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(56, 189, 248, 0.4);
+      box-shadow: 0 15px 30px rgba(255,255,255,0.3);
     }
     
     .submit-btn:active {
@@ -569,12 +588,12 @@ function Contact() {
     }
     
     ::-webkit-scrollbar-track {
-      background: rgba(30, 41, 59, 0.5);
+      background: rgba(255,255,255,0.1);
       border-radius: 3px;
     }
     
     ::-webkit-scrollbar-thumb {
-      background: linear-gradient(135deg, #38bdf8 0%, #8b5cf6 100%);
+      background: linear-gradient(135deg, #0a1f44, #1e3a8a);
       border-radius: 3px;
     }
     
@@ -646,10 +665,9 @@ function Contact() {
                 </div>
                 <div style={contactItemContentStyle}>
                   <h3 style={contactItemTitleStyle}>Email</h3>
-                  <p style={contactItemTextStyle}>contact@lohssoftwaresolutions.com</p>
-                  <p style={contactItemTextStyle}>support@lohssoftwaresolutions.com</p>
+                  <p style={contactItemTextStyle}>lohssoftwaresolutions@gmail.com</p>
                   <a 
-                    href="mailto:contact@lohssoftwaresolutions.com" 
+                    href="mailto:lohssoftwaresolutions@gmail.com" 
                     style={contactLinkStyle}
                     className="contact-link"
                   >
@@ -664,10 +682,10 @@ function Contact() {
                 </div>
                 <div style={contactItemContentStyle}>
                   <h3 style={contactItemTitleStyle}>Phone</h3>
-                  <p style={contactItemTextStyle}>+91 98765 43210 (Sales)</p>
-                  <p style={contactItemTextStyle}>+91 98765 43211 (Support)</p>
+                  <p style={contactItemTextStyle}>+91 95733 44275</p>
+                  <p style={contactItemTextStyle}>+91 88860 53334</p>
                   <a 
-                    href="tel:+919876543210" 
+                    href="tel:+919573344275" 
                     style={contactLinkStyle}
                     className="contact-link"
                   >
@@ -682,10 +700,10 @@ function Contact() {
                 </div>
                 <div style={contactItemContentStyle}>
                   <h3 style={contactItemTitleStyle}>Office</h3>
-                  <p style={contactItemTextStyle}>Tech Hub Tower, 5th Floor</p>
-                  <p style={contactItemTextStyle}>Bangalore, Karnataka 560001</p>
+                  <p style={contactItemTextStyle}>Flat No: 402, A Square Business Center</p>
+                  <p style={contactItemTextStyle}>Ram Nagar, Visakhapatnam 530003</p>
                   <a 
-                    href="https://maps.google.com" 
+                    href="https://maps.google.com/?q=A+Square+Business+Center+Ram+Nagar+Visakhapatnam" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     style={contactLinkStyle}
@@ -702,9 +720,9 @@ function Contact() {
                 </div>
                 <div style={contactItemContentStyle}>
                   <h3 style={contactItemTitleStyle}>Business Hours</h3>
-                  <p style={contactItemTextStyle}>Monday - Friday: 9:00 AM - 7:00 PM</p>
-                  <p style={contactItemTextStyle}>Saturday: 10:00 AM - 4:00 PM</p>
-                  <p style={{...contactItemTextStyle, color: '#38bdf8', fontWeight: '500'}}>
+                  <p style={contactItemTextStyle}>Monday - Saturday: 9:00 AM - 8:00 PM</p>
+                  <p style={contactItemTextStyle}>Sunday: Closed</p>
+                  <p style={{...contactItemTextStyle, color: '#1e3a8a', fontWeight: '500'}}>
                     24/7 Emergency Support Available
                   </p>
                 </div>
@@ -776,7 +794,7 @@ function Contact() {
                 )}
               </button>
               
-              <p style={{marginTop: '20px', color: '#94a3b8', fontSize: '0.9rem', textAlign: 'center'}}>
+              <p style={{marginTop: '20px', color: '#e0e0e0', fontSize: '0.9rem', textAlign: 'center', fontFamily: "'Crimson Text', serif"}}>
                 We'll respond within 24 hours
               </p>
             </form>

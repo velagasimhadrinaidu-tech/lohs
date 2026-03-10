@@ -75,9 +75,8 @@ function WebProjects() {
       ],
       metrics: [
         { label: "Page Speed", value: "95/100", icon: "🚀" },
-        { label: "Core Web Vitals", value: "Good", icon: "📊" },
-        { label: "Conversion", value: "42%", icon: "💵" },
-        { label: "PWA Score", value: "100", icon: "📱" }
+        { label: "Core Web Vitals", value: "Good", icon: "📊" }
+        // Removed "Conversion" and "PWA Score" as requested
       ]
     }
   ];
@@ -85,16 +84,16 @@ function WebProjects() {
   return (
     <div
       style={{
-        padding: "70px 20px",
-        backgroundColor: "#0a1f44",
+        padding: "120px 20px 70px 20px", // Increased top padding to avoid header overlap
+        backgroundColor: "#ffffff",
         fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-        color: "#ffffff",
+        color: "#0a1f44",
         minHeight: "100vh",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Animated Background */}
+      {/* Animated Background (light blue) */}
       <div style={{
         position: "absolute",
         top: 0,
@@ -102,25 +101,25 @@ function WebProjects() {
         right: 0,
         bottom: 0,
         background: `
-          radial-gradient(circle at 20% 80%, rgba(30, 136, 229, 0.15) 0%, transparent 50%),
-          radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.08) 0%, transparent 50%)
+          radial-gradient(circle at 20% 80%, rgba(30, 136, 229, 0.05) 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.03) 0%, transparent 50%),
+          radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.02) 0%, transparent 50%)
         `,
         zIndex: 0,
       }} />
       
-      {/* Floating Particles */}
+      {/* Floating Particles (light blue) */}
       <div style={{
         position: "absolute",
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundImage: `radial-gradient(2px 2px at 20px 30px, rgba(30, 136, 229, 0.3), transparent),
-                         radial-gradient(2px 2px at 40px 70px, rgba(139, 92, 246, 0.3), transparent),
-                         radial-gradient(2px 2px at 60px 20px, rgba(16, 185, 129, 0.3), transparent),
-                         radial-gradient(2px 2px at 80px 50px, rgba(30, 136, 229, 0.3), transparent),
-                         radial-gradient(2px 2px at 90px 80px, rgba(139, 92, 246, 0.3), transparent)`,
+        backgroundImage: `radial-gradient(2px 2px at 20px 30px, rgba(30, 136, 229, 0.1), transparent),
+                         radial-gradient(2px 2px at 40px 70px, rgba(139, 92, 246, 0.1), transparent),
+                         radial-gradient(2px 2px at 60px 20px, rgba(16, 185, 129, 0.1), transparent),
+                         radial-gradient(2px 2px at 80px 50px, rgba(30, 136, 229, 0.1), transparent),
+                         radial-gradient(2px 2px at 90px 80px, rgba(139, 92, 246, 0.1), transparent)`,
         backgroundRepeat: "repeat",
         backgroundSize: "100px 100px",
         animation: "float 20s infinite linear",
@@ -156,8 +155,8 @@ function WebProjects() {
         position: "relative",
         zIndex: 1 
       }}>
-        {/* ENHANCED PAGE HEADER */}
-        <div style={{ marginBottom: "80px" }}>
+        {/* Simplified Page Header */}
+        <div style={{ marginBottom: "60px" }}>
           <div style={{ 
             display: "flex", 
             alignItems: "center", 
@@ -175,17 +174,17 @@ function WebProjects() {
               style={{
                 fontSize: "3.5rem",
                 fontWeight: "800",
-                color: "#ffffff",
+                color: "#0a1f44",
                 margin: 0,
                 letterSpacing: "-0.5px",
                 lineHeight: 1.2,
-                textShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
+                textShadow: "0 4px 20px rgba(30, 136, 229, 0.1)",
               }}
             >
               Frontend Development
               <span style={{ 
                 display: "block", 
-                background: "linear-gradient(135deg, #00d4ff 0%, #8b5cf6 50%, #10b981 100%)",
+                background: "linear-gradient(135deg, #1e88e5 0%, #8b5cf6 50%, #10b981 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -194,37 +193,6 @@ function WebProjects() {
                 Showcase Projects
               </span>
             </h1>
-          </div>
-
-          <div
-            style={{
-              fontSize: "1.25rem",
-              color: "#b0c4ff",
-              maxWidth: "800px",
-              lineHeight: "1.8",
-              padding: "35px 40px",
-              backgroundColor: "rgba(30, 136, 229, 0.15)",
-              borderRadius: "20px",
-              border: "1px solid rgba(67, 97, 238, 0.4)",
-              position: "relative",
-              overflow: "hidden",
-              backdropFilter: "blur(10px)",
-              boxShadow: "0 20px 40px rgba(30, 136, 229, 0.2)",
-            }}
-          >
-            <div style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "5px",
-              height: "100%",
-              background: "linear-gradient(180deg, #4361ee 0%, #00d4ff 100%)",
-            }} />
-            <p style={{ margin: 0, color: "#e2e8f0" }}>
-              Showcasing cutting-edge frontend technologies and animations in modern web applications. 
-              Each project demonstrates our expertise in creating immersive user experiences with 
-              high-performance UI/UX implementations.
-            </p>
           </div>
         </div>
 
@@ -238,25 +206,25 @@ function WebProjects() {
             <div
               key={project.id}
               style={{
-                backgroundColor: "rgba(16, 23, 48, 0.9)",
+                backgroundColor: "#ffffff",
                 borderRadius: "28px",
                 overflow: "hidden",
-                boxShadow: "0 25px 60px rgba(0, 0, 0, 0.4)",
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.1)",
                 transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                 position: "relative",
-                border: `1px solid ${project.color}30`,
+                border: `1px solid ${project.color}20`,
                 backdropFilter: "blur(12px)",
                 animation: `slideIn ${0.3 + index * 0.1}s ease-out`,
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-20px) scale(1.02)";
-                e.currentTarget.style.boxShadow = `0 40px 80px ${project.color}40`;
+                e.currentTarget.style.boxShadow = `0 40px 60px -15px ${project.color}30`;
                 e.currentTarget.style.borderColor = project.color;
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "translateY(0) scale(1)";
-                e.currentTarget.style.boxShadow = "0 25px 60px rgba(0, 0, 0, 0.4)";
-                e.currentTarget.style.borderColor = `${project.color}30`;
+                e.currentTarget.style.boxShadow = "0 25px 50px -12px rgba(0, 0, 0, 0.1)";
+                e.currentTarget.style.borderColor = `${project.color}20`;
               }}
             >
               {/* Project Header with Gradient Overlay */}
@@ -268,8 +236,8 @@ function WebProjects() {
                 <div style={{
                   position: "absolute",
                   inset: 0,
-                  background: `linear-gradient(135deg, ${project.color}20 0%, transparent 70%), 
-                              linear-gradient(to bottom, transparent 50%, rgba(16, 23, 48, 0.95) 100%)`,
+                  background: `linear-gradient(135deg, ${project.color}10 0%, transparent 70%), 
+                              linear-gradient(to bottom, transparent 50%, rgba(255,255,255,0.95) 100%)`,
                   zIndex: 1,
                 }} />
                 <img
@@ -280,15 +248,15 @@ function WebProjects() {
                     height: "100%",
                     objectFit: "cover",
                     transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
-                    filter: "brightness(0.8) contrast(1.1)",
+                    filter: "brightness(0.95) contrast(1.05)",
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = "scale(1.15) rotate(1deg)";
-                    e.currentTarget.style.filter = "brightness(1) contrast(1.2) saturate(1.2)";
+                    e.currentTarget.style.filter = "brightness(1) contrast(1.2) saturate(1.1)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = "scale(1) rotate(0)";
-                    e.currentTarget.style.filter = "brightness(0.8) contrast(1.1)";
+                    e.currentTarget.style.filter = "brightness(0.95) contrast(1.05)";
                   }}
                 />
                 
@@ -306,7 +274,7 @@ function WebProjects() {
                   letterSpacing: "1px",
                   textTransform: "uppercase",
                   backdropFilter: "blur(10px)",
-                  boxShadow: `0 10px 25px ${project.statusColor}40`,
+                  boxShadow: `0 10px 25px ${project.statusColor}30`,
                   zIndex: 3,
                   border: "2px solid rgba(255, 255, 255, 0.2)",
                   transform: "translateY(0)",
@@ -322,7 +290,7 @@ function WebProjects() {
                   left: 0,
                   right: 0,
                   padding: "30px",
-                  background: "linear-gradient(to top, rgba(16, 23, 48, 0.95), transparent)",
+                  background: "linear-gradient(to top, rgba(255,255,255,0.95), transparent)",
                   zIndex: 2,
                 }}>
                   <div style={{
@@ -336,7 +304,7 @@ function WebProjects() {
                     marginBottom: "12px",
                     textTransform: "uppercase",
                     letterSpacing: "1px",
-                    boxShadow: `0 8px 20px ${project.color}40`,
+                    boxShadow: `0 8px 20px ${project.color}30`,
                   }}>
                     {project.category}
                   </div>
@@ -344,18 +312,18 @@ function WebProjects() {
                   <h2
                     style={{
                       fontSize: "2.2rem",
-                      color: "#ffffff",
+                      color: "#0a1f44",
                       margin: "0 0 10px 0",
                       fontWeight: "800",
                       lineHeight: 1.2,
-                      textShadow: "0 2px 10px rgba(0, 0, 0, 0.5)",
+                      textShadow: "0 2px 10px rgba(0, 0, 0, 0.05)",
                     }}
                   >
                     {project.title}
                   </h2>
                   <p style={{
                     fontSize: "1rem",
-                    color: "#b0c4ff",
+                    color: "#475569",
                     margin: 0,
                     lineHeight: 1.6,
                   }}>
@@ -405,32 +373,31 @@ function WebProjects() {
                           className="tech-chip"
                           style={{
                             padding: "12px 15px",
-                            background: `linear-gradient(135deg, ${project.color}15 0%, ${project.color}05 100%)`,
+                            background: `linear-gradient(135deg, ${project.color}10 0%, ${project.color}05 100%)`,
                             borderRadius: "12px",
-                            border: `1px solid ${project.color}30`,
+                            border: `1px solid ${project.color}20`,
                             transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                             cursor: "default",
                             animationDelay: `${techIndex * 0.05}s`,
                           }}
                           onMouseEnter={(e) => {
                             e.currentTarget.style.transform = "translateY(-5px) scale(1.05)";
-                            e.currentTarget.style.background = `linear-gradient(135deg, ${project.color}30 0%, ${project.color}15 100%)`;
+                            e.currentTarget.style.background = `linear-gradient(135deg, ${project.color}20 0%, ${project.color}10 100%)`;
                             e.currentTarget.style.borderColor = project.color;
-                            e.currentTarget.style.boxShadow = `0 10px 20px ${project.color}30`;
+                            e.currentTarget.style.boxShadow = `0 10px 20px ${project.color}20`;
                           }}
                           onMouseLeave={(e) => {
                             e.currentTarget.style.transform = "translateY(0) scale(1)";
-                            e.currentTarget.style.background = `linear-gradient(135deg, ${project.color}15 0%, ${project.color}05 100%)`;
-                            e.currentTarget.style.borderColor = `${project.color}30`;
+                            e.currentTarget.style.background = `linear-gradient(135deg, ${project.color}10 0%, ${project.color}05 100%)`;
+                            e.currentTarget.style.borderColor = `${project.color}20`;
                             e.currentTarget.style.boxShadow = "none";
                           }}
                         >
                           <div style={{ 
-                            color: "#ffffff", 
+                            color: "#0a1f44", 
                             fontWeight: "600",
                             fontSize: "0.9rem",
                             textAlign: "center",
-                            textShadow: "0 1px 2px rgba(0,0,0,0.3)",
                           }}>
                             {tech}
                           </div>
@@ -473,25 +440,25 @@ function WebProjects() {
                           key={featureIndex}
                           style={{
                             padding: "12px 15px",
-                            background: `linear-gradient(135deg, ${project.color}10 0%, ${project.color}05 100%)`,
+                            background: `linear-gradient(135deg, ${project.color}08 0%, ${project.color}03 100%)`,
                             borderRadius: "10px",
-                            border: `1px solid ${project.color}20`,
+                            border: `1px solid ${project.color}15`,
                             transition: "all 0.3s ease",
                             cursor: "default",
                           }}
                           onMouseEnter={(e) => {
                             e.currentTarget.style.transform = "translateX(5px)";
-                            e.currentTarget.style.background = `linear-gradient(135deg, ${project.color}20 0%, ${project.color}10 100%)`;
+                            e.currentTarget.style.background = `linear-gradient(135deg, ${project.color}15 0%, ${project.color}08 100%)`;
                             e.currentTarget.style.borderColor = project.color;
                           }}
                           onMouseLeave={(e) => {
                             e.currentTarget.style.transform = "translateX(0)";
-                            e.currentTarget.style.background = `linear-gradient(135deg, ${project.color}10 0%, ${project.color}05 100%)`;
-                            e.currentTarget.style.borderColor = `${project.color}20`;
+                            e.currentTarget.style.background = `linear-gradient(135deg, ${project.color}08 0%, ${project.color}03 100%)`;
+                            e.currentTarget.style.borderColor = `${project.color}15`;
                           }}
                         >
                           <div style={{ 
-                            color: "#e2e8f0", 
+                            color: "#475569", 
                             fontSize: "0.9rem",
                             display: "flex",
                             alignItems: "center",
@@ -515,11 +482,11 @@ function WebProjects() {
 
                 {/* Performance Metrics - Side by Side */}
                 <div style={{ 
-                  backgroundColor: `${project.color}10`, 
+                  backgroundColor: `${project.color}08`, 
                   padding: "25px", 
                   borderRadius: "20px",
-                  border: `1px solid ${project.color}20`,
-                  boxShadow: "0 10px 30px rgba(0, 0, 0, 0.2)",
+                  border: `1px solid ${project.color}15`,
+                  boxShadow: "0 10px 30px rgba(30, 136, 229, 0.1)",
                 }}>
                   <h3 style={{ 
                     color: project.color, 
@@ -550,23 +517,23 @@ function WebProjects() {
                         key={metricIndex}
                         style={{
                           padding: "18px 15px",
-                          background: `linear-gradient(135deg, ${project.color}15 0%, ${project.color}05 100%)`,
+                          background: `linear-gradient(135deg, ${project.color}10 0%, ${project.color}03 100%)`,
                           borderRadius: "15px",
-                          border: `1px solid ${project.color}25`,
+                          border: `1px solid ${project.color}20`,
                           transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                           cursor: "default",
                           textAlign: "center",
                         }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.transform = "translateY(-8px) scale(1.05)";
-                          e.currentTarget.style.background = `linear-gradient(135deg, ${project.color}25 0%, ${project.color}15 100%)`;
+                          e.currentTarget.style.background = `linear-gradient(135deg, ${project.color}20 0%, ${project.color}10 100%)`;
                           e.currentTarget.style.borderColor = project.color;
-                          e.currentTarget.style.boxShadow = `0 15px 30px ${project.color}30`;
+                          e.currentTarget.style.boxShadow = `0 15px 30px ${project.color}20`;
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.transform = "translateY(0) scale(1)";
-                          e.currentTarget.style.background = `linear-gradient(135deg, ${project.color}15 0%, ${project.color}05 100%)`;
-                          e.currentTarget.style.borderColor = `${project.color}25`;
+                          e.currentTarget.style.background = `linear-gradient(135deg, ${project.color}10 0%, ${project.color}03 100%)`;
+                          e.currentTarget.style.borderColor = `${project.color}20`;
                           e.currentTarget.style.boxShadow = "none";
                         }}
                       >
@@ -584,7 +551,7 @@ function WebProjects() {
                           {metric.value}
                         </div>
                         <div style={{ 
-                          color: "#b0c4ff", 
+                          color: "#475569", 
                           fontSize: "0.85rem",
                           fontWeight: "600",
                           textTransform: "uppercase",
@@ -597,182 +564,10 @@ function WebProjects() {
                   </div>
                 </div>
 
-                {/* Project Footer with View Details Button */}
-                <div style={{
-                  marginTop: "30px",
-                  padding: "20px",
-                  background: `linear-gradient(135deg, ${project.color}10 0%, transparent 100%)`,
-                  borderRadius: "15px",
-                  border: `1px solid ${project.color}20`,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}>
-                  <div style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "15px",
-                  }}>
-                    <div style={{
-                      width: "40px",
-                      height: "40px",
-                      background: project.gradient,
-                      borderRadius: "10px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "1.2rem",
-                      color: "white",
-                      boxShadow: `0 8px 20px ${project.color}40`,
-                    }}>
-                      {index + 1}
-                    </div>
-                    <div>
-                      <div style={{ 
-                        color: "#ffffff", 
-                        fontSize: "0.9rem",
-                        fontWeight: "600",
-                      }}>
-                        Project #{index + 1}
-                      </div>
-                      <div style={{ 
-                        color: "#b0c4ff", 
-                        fontSize: "0.85rem",
-                      }}>
-                        Click for full case study
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <button
-                    style={{
-                      background: project.gradient,
-                      color: "white",
-                      padding: "12px 25px",
-                      borderRadius: "10px",
-                      fontWeight: "700",
-                      fontSize: "0.9rem",
-                      border: "none",
-                      cursor: "pointer",
-                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "10px",
-                      boxShadow: `0 10px 25px ${project.color}40`,
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = "translateX(5px) scale(1.05)";
-                      e.currentTarget.style.boxShadow = `0 15px 35px ${project.color}60`;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = "translateX(0) scale(1)";
-                      e.currentTarget.style.boxShadow = `0 10px 25px ${project.color}40`;
-                    }}
-                  >
-                    View Details
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </div>
+                {/* Footer section (Project #, Click for full case study, View Details) has been removed as requested */}
               </div>
             </div>
           ))}
-        </div>
-
-        {/* SUMMARY STATISTICS */}
-        <div
-          style={{
-            marginTop: "80px",
-            background: "linear-gradient(135deg, rgba(30, 136, 229, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%)",
-            borderRadius: "30px",
-            padding: "50px",
-            textAlign: "center",
-            position: "relative",
-            overflow: "hidden",
-            border: "1px solid rgba(67, 97, 238, 0.4)",
-            backdropFilter: "blur(15px)",
-          }}
-        >
-          <h2 style={{ 
-            fontSize: "2.5rem", 
-            marginBottom: "40px", 
-            fontWeight: "800",
-            position: "relative",
-            zIndex: 1,
-            color: "#ffffff",
-            textShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
-          }}>
-            Frontend Excellence
-          </h2>
-          
-          <div style={{ 
-            display: "grid", 
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", 
-            gap: "25px",
-            position: "relative",
-            zIndex: 1,
-          }}>
-            {[
-              { value: "9", label: "Frontend Frameworks", color: "#1e88e5", icon: "⚛️" },
-              { value: "21", label: "UI Libraries", color: "#8b5cf6", icon: "🎨" },
-              { value: "15+", label: "Animations", color: "#10b981", icon: "✨" },
-              { value: "100%", label: "PWA Ready", color: "#f59e0b", icon: "📱" },
-            ].map((stat, index) => (
-              <div
-                key={index}
-                style={{
-                  backgroundColor: "rgba(255, 255, 255, 0.1)",
-                  padding: "35px 20px",
-                  borderRadius: "20px",
-                  backdropFilter: "blur(10px)",
-                  transition: "all 0.4s ease",
-                  cursor: "default",
-                  border: "1px solid rgba(255, 255, 255, 0.15)",
-                  position: "relative",
-                  overflow: "hidden",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-10px) scale(1.05)";
-                  e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
-                  e.currentTarget.style.borderColor = stat.color;
-                  e.currentTarget.style.boxShadow = `0 20px 40px ${stat.color}40`;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0) scale(1)";
-                  e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
-                  e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.15)";
-                  e.currentTarget.style.boxShadow = "none";
-                }}
-              >
-                <div style={{ 
-                  fontSize: "1.5rem", 
-                  marginBottom: "15px",
-                  opacity: 0.8,
-                }}>
-                  {stat.icon}
-                </div>
-                <div style={{ 
-                  fontSize: "3rem", 
-                  fontWeight: "800", 
-                  marginBottom: "10px",
-                  color: stat.color,
-                  textShadow: `0 0 20px ${stat.color}40`,
-                }}>
-                  {stat.value}
-                </div>
-                <div style={{ 
-                  fontSize: "1rem", 
-                  color: "#b0c4ff",
-                  fontWeight: "600",
-                  textTransform: "uppercase",
-                  letterSpacing: "1px",
-                }}>
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
 
@@ -790,7 +585,7 @@ function WebProjects() {
           borderRadius: "50px",
           fontWeight: "800",
           textDecoration: "none",
-          boxShadow: "0 25px 50px rgba(30, 136, 229, 0.6)",
+          boxShadow: "0 25px 50px rgba(30, 136, 229, 0.3)",
           transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
           display: "flex",
           alignItems: "center",
@@ -803,11 +598,11 @@ function WebProjects() {
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = "translateX(-8px) scale(1.1) rotate(-2deg)";
-          e.currentTarget.style.boxShadow = "0 35px 70px rgba(30, 136, 229, 0.8)";
+          e.currentTarget.style.boxShadow = "0 35px 70px rgba(30, 136, 229, 0.5)";
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = "translateX(0) scale(1) rotate(0)";
-          e.currentTarget.style.boxShadow = "0 25px 50px rgba(30, 136, 229, 0.6)";
+          e.currentTarget.style.boxShadow = "0 25px 50px rgba(30, 136, 229, 0.3)";
         }}
       >
         <svg

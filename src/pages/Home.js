@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FiArrowRight, FiCheck, FiCode, FiCloud, FiSmartphone, FiUsers, FiAward, FiShield, FiGlobe, FiStar, FiTrendingUp, FiTarget } from 'react-icons/fi';
+import { FiArrowRight, FiCheck, FiCode, FiCloud, FiSmartphone, FiUsers, FiAward, FiShield, FiGlobe, FiStar, FiTrendingUp, FiTarget, FiClock, FiCalendar, FiBookOpen, FiLayers, FiZap, FiCpu, FiDatabase, FiLock, FiBriefcase, FiMapPin } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 function Home() {
@@ -22,15 +22,79 @@ function Home() {
     return () => clearInterval(typingInterval);
   }, []);
 
+  // Training & Placements Data
+  const trainingPrograms = [
+    {
+      title: 'AI & Data Science',
+      description: 'Master machine learning, deep learning, and data analytics with real-world projects.',
+      duration: '6 Months',
+      format: 'Online + Mentorship',
+      icon: <FiCpu size={24} />
+    },
+    {
+      title: 'Future Tech Stack',
+      description: 'Full-stack development with cloud, DevOps, and microservices architecture.',
+      duration: '6 Months',
+      format: 'Hybrid',
+      icon: <FiZap size={24} />
+    },
+    {
+      title: 'Business Analytics',
+      description: 'Data-driven decision making with SQL, Tableau, and business intelligence tools.',
+      duration: '5 Months',
+      format: 'Online',
+      icon: <FiTrendingUp size={24} />
+    }
+  ];
+
+  // Placement Stats
+  const placementStats = [
+    { icon: <FiBriefcase />, value: '100%', label: 'Placement Guarantee' },
+    { icon: <FiUsers />, value: '100+', label: 'Hiring Partners' },
+    { icon: <FiAward />, value: '450+', label: 'Placed in 1 Year' },
+    { icon: <FiMapPin />, value: 'India', label: 'Countrywide' }
+  ];
+
+  // Partner Companies (for carousel)
+  const partnerCompanies = [
+    'Infosys', 'Capgemini', 'Accenture', 'Wipro', 'Cognizant',
+    'TCS', 'HCL', 'Tech Mahindra', 'Virtusa', 'Welforge'
+  ];
+
+  // Additional stats
+  const strategicPartners = 25;
+  const clients = 9;
+
+  // Carousel state
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const itemsPerSlide = 5; // number of logos shown at once
+
+  // Auto-slide every 3 seconds
+  useEffect(() => {
+    if (!showContent) return;
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => 
+        prev + 1 >= Math.ceil(partnerCompanies.length / itemsPerSlide) ? 0 : prev + 1
+      );
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [showContent, partnerCompanies.length]);
+
+  // Calculate visible logos for current slide
+  const getVisibleLogos = () => {
+    const start = currentSlide * itemsPerSlide;
+    return partnerCompanies.slice(start, start + itemsPerSlide);
+  };
+
   return (
     <div style={containerStyle}>
+      {/* Background Pattern */}
+      <div style={backgroundPatternStyle} />
+
       {/* Hero Section */}
       <section style={heroSectionStyle}>
         <div style={heroContentStyle}>
-          <div style={logoContainerStyle}>
-            
-            
-          </div>
+          <div style={logoContainerStyle}></div>
           
           <h1 style={heroHeadingStyle}>
             {displayText}
@@ -88,43 +152,30 @@ function Home() {
           )}
         </div>
         
-        {/* Hero Visualization */}
-        <div style={heroVisualStyle}>
-          <div style={heroCard}>
-            <div style={cardHeader}>
-              <div style={cardHeaderIcon}>⚡</div>
-              <span style={cardHeaderText}>Strategic Impact Dashboard</span>
-            </div>
-            <div style={cardContent}>
-              <div style={metricRow}>
-                <div style={metricLabel}>Business Growth</div>
-                <div style={metricValue}>+47%</div>
-              </div>
-              <div style={progressBar}>
-                <div style={progressFill} />
-              </div>
-              <div style={metricRow}>
-                <div style={metricLabel}>Operational Efficiency</div>
-                <div style={metricValue}>+63%</div>
-              </div>
-              <div style={progressBar}>
-                <div style={progressFill2} />
-              </div>
-              <div style={floatingCode}>
-                <div style={codeLine} />
-                <div style={codeLine} />
-                <div style={codeLine} />
-              </div>
-              <div style={architectureBadge}>
-                <span style={architectureText}>Future-Ready Architecture</span>
-              </div>
-            </div>
+        {/* Logo Carousel (replaces previous heroVisual) */}
+        <div style={carouselContainerStyle}>
+          <div style={carouselHeader}>
+            <span style={carouselHeaderText}>Trusted by Industry Leaders</span>
           </div>
-          
-          {/* Floating Elements */}
-          <div style={floatingElement} />
-          <div style={floatingElement2} />
-          <div style={floatingElement3} />
+          <div style={carouselContentStyle}>
+            {getVisibleLogos().map((company, idx) => (
+              <div key={idx} style={logoCardStyle}>
+                <span style={logoText}>{company}</span>
+              </div>
+            ))}
+          </div>
+          <div style={carouselDots}>
+            {Array.from({ length: Math.ceil(partnerCompanies.length / itemsPerSlide) }).map((_, idx) => (
+              <span
+                key={idx}
+                style={{
+                  ...dotStyle,
+                  backgroundColor: idx === currentSlide ? '#ffffff' : 'rgba(255,255,255,0.3)'
+                }}
+                onClick={() => setCurrentSlide(idx)}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -137,7 +188,7 @@ function Home() {
           </div>
           <div style={statsGridStyle}>
             <div style={statCardStyle}>
-              <div style={statNumberStyle}>250+</div>
+              <div style={statNumberStyle}>25+</div>
               <div style={statLabelStyle}>Strategic Projects Delivered</div>
               <div style={statBar} />
             </div>
@@ -160,194 +211,128 @@ function Home() {
         </section>
       )}
 
-      {/* Core Services Section */}
+      {/* Training & Placements Section */}
       {showContent && (
-        <section style={servicesSectionStyle}>
+        <section style={trainingSectionStyle}>
           <div style={sectionHeaderStyle}>
-            <h2 style={sectionTitleStyle}>Strategic Technology Solutions</h2>
-            <p style={sectionSubtitleStyle}>Comprehensive digital architecture for forward-thinking businesses</p>
+            <h2 style={sectionTitleStyle}>Training & Placements</h2>
+            <p style={sectionSubtitleStyle}>100% placement guarantee with top MNCs</p>
             <div style={sectionDivider} />
           </div>
-          
-          <div style={servicesGridStyle}>
-            {servicesData.map((service, index) => (
-              <div 
-                key={service.id} 
-                style={serviceCardStyle}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-10px)';
-                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(230, 0, 0, 0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 10px 30px rgba(230, 0, 0, 0.08)';
-                }}
-              >
-                <div style={serviceIconContainer}>
-                  <div style={serviceIconStyle}>
-                    {service.icon}
-                  </div>
-                  <div style={serviceIconGlow} />
-                </div>
-                <h3 style={serviceTitleStyle}>{service.title}</h3>
-                <p style={serviceDescStyle}>{service.description}</p>
-                <div style={serviceFeatures}>
-                  {service.features.map((feature, idx) => (
-                    <div key={idx} style={featureStyle}>
-                      <FiCheck style={{ color: '#FFB81C' }} />
-                      <span style={featureText}>{feature}</span>
+
+          {/* Placement Stats Cards */}
+          <div style={placementStatsGrid}>
+            {placementStats.map((stat, index) => (
+              <div key={index} style={placementStatCard}>
+                <div style={placementStatIcon}>{stat.icon}</div>
+                <div style={placementStatValue}>{stat.value}</div>
+                <div style={placementStatLabel}>{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Two-column layout: Programs left, Partners right */}
+          <div style={trainingColumnsStyle}>
+            {/* Left: Training Programs */}
+            <div style={trainingLeftStyle}>
+              <h3 style={trainingSubtitle}>Our Flagship Programs</h3>
+              <div style={programsGridStyle}>
+                {trainingPrograms.map((program, idx) => (
+                  <div key={idx} style={programCardStyle}>
+                    <div style={programIcon}>{program.icon}</div>
+                    <h4 style={programTitle}>{program.title}</h4>
+                    <p style={programDescription}>{program.description}</p>
+                    <div style={programMeta}>
+                      <span style={programDuration}>
+                        <FiClock style={{ marginRight: 6 }} />
+                        {program.duration}
+                      </span>
+                      <span style={programFormat}>
+                        {program.format}
+                      </span>
                     </div>
-                  ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: Partner Companies & Stats */}
+            <div style={trainingRightStyle}>
+              <div style={partnerStatsBox}>
+                <div style={partnerStatRow}>
+                  <span style={partnerStatLabel}>Strategic Partners</span>
+                  <span style={partnerStatValue}>{strategicPartners}+</span>
                 </div>
-                <Link to={service.link} style={serviceLinkStyle}>
-                  View Case Studies
-                  <FiArrowRight style={{ marginLeft: '8px' }} />
+                <div style={partnerStatRow}>
+                  <span style={partnerStatLabel}>Active Clients</span>
+                  <span style={partnerStatValue}>{clients}+</span>
+                </div>
+                <div style={partnerStatRow}>
+                  <span style={partnerStatLabel}>Countries Served</span>
+                  <span style={partnerStatValue}>India</span>
+                </div>
+                <div style={partnerStatRow}>
+                  <span style={partnerStatLabel}>Job Guarantee</span>
+                  <span style={partnerStatValue}>6 Months</span>
+                </div>
+              </div>
+
+              <h3 style={companyTitle}>Top Hiring Partners</h3>
+              <div style={companyGrid}>
+                {partnerCompanies.map((company, idx) => (
+                  <div key={idx} style={companyBadge}>
+                    {company}
+                  </div>
+                ))}
+              </div>
+
+              <div style={placementCTAContainer}>
+                <Link to="/training-placements" style={{ textDecoration: 'none' }}>
+                  <button style={placementCTAButton}>
+                    Explore Programs →
+                  </button>
                 </Link>
               </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Strategy Section */}
-      {showContent && (
-        <section style={strategySectionStyle}>
-          <div style={strategyContentStyle}>
-            <div style={strategyTextContainer}>
-              <h2 style={strategyTitleStyle}>Our Strategic Approach</h2>
-              <p style={strategyDescriptionStyle}>
-                We don't just build software – we architect digital transformation strategies 
-                that align with your business objectives and drive measurable results.
-              </p>
-              <div style={strategyPoints}>
-                <div style={strategyPoint}>
-                  <div style={strategyPointIcon}>1</div>
-                  <div>
-                    <h4 style={strategyPointTitle}>Strategic Assessment</h4>
-                    <p style={strategyPointText}>Comprehensive analysis of your business goals and technology landscape</p>
-                  </div>
-                </div>
-                <div style={strategyPoint}>
-                  <div style={strategyPointIcon}>2</div>
-                  <div>
-                    <h4 style={strategyPointTitle}>Architecture Design</h4>
-                    <p style={strategyPointText}>Future-proof digital architecture designed for scalability and growth</p>
-                  </div>
-                </div>
-                <div style={strategyPoint}>
-                  <div style={strategyPointIcon}>3</div>
-                  <div>
-                    <h4 style={strategyPointTitle}>Implementation & Growth</h4>
-                    <p style={strategyPointText}>Agile execution with continuous optimization and strategic partnership</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style={strategyVisualStyle}>
-              <div style={strategyChart}>
-                <div style={chartBar} />
-                <div style={chartBar} />
-                <div style={chartBar} />
-                <div style={chartLabels}>
-                  <span>Before</span>
-                  <span>Strategy</span>
-                  <span>Implementation</span>
-                  <span>Growth</span>
-                </div>
-              </div>
             </div>
           </div>
         </section>
       )}
 
-      {/* Client Showcase */}
+      {/* Strategic Partners Marquee */}
       {showContent && (
-        <section style={clientsSectionStyle}>
+        <section style={partnersSectionStyle}>
           <div style={sectionHeaderStyle}>
-            <h2 style={sectionTitleStyle}>Strategic Partners</h2>
-            <p style={sectionSubtitleStyle}>Collaborating with forward-thinking industry leaders</p>
+            <h2 style={sectionTitleStyle}>Our Ecosystem</h2>
+            <p style={sectionSubtitleStyle}>Trusted by industry leaders worldwide</p>
             <div style={sectionDivider} />
           </div>
           
-          <div style={clientsGridStyle}>
-            {clientsData.map((client) => (
-              <div key={client.id} style={clientCardStyle}>
-                <div style={clientLogoContainer}>
-                  <div style={clientLogoPlaceholder}>
-                    <div style={clientInitials}>{client.initials}</div>
-                  </div>
-                  <div style={clientLogoOverlay} />
+          <div style={marqueeContainer}>
+            <div style={marqueeContent}>
+              {partnerCompanies.map((company, idx) => (
+                <div key={idx} style={partnerItem}>
+                  <span style={partnerName}>{company}</span>
                 </div>
-                <div style={clientInfoStyle}>
-                  <h4 style={clientNameStyle}>{client.name}</h4>
-                  <div style={clientIndustryStyle}>{client.industry}</div>
-                  <div style={clientImpact}>
-                    <div style={impactMetric}>
-                      <span style={impactLabel}>Growth:</span>
-                      <span style={impactValue}>+{client.growth}%</span>
-                    </div>
-                    <div style={impactMetric}>
-                      <span style={impactLabel}>Efficiency:</span>
-                      <span style={impactValue}>+{client.efficiency}%</span>
-                    </div>
-                  </div>
-                  <p style={clientTestimonialStyle}>"{client.testimonial}"</p>
-                  <div style={clientDetails}>
-                    <div style={clientDetailItem}>
-                      <FiCheck style={{ color: '#FFB81C', marginRight: '5px' }} />
-                      <span>{client.project}</span>
-                    </div>
-                  </div>
+              ))}
+              {/* Duplicate for seamless scrolling */}
+              {partnerCompanies.map((company, idx) => (
+                <div key={`dup-${idx}`} style={partnerItem}>
+                  <span style={partnerName}>{company}</span>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Final CTA */}
-      {showContent && (
-        <section style={finalCTAStyle}>
-          <div style={finalCTAContentStyle}>
-            <div style={finalCTAIcon}>🚀</div>
-            <h2 style={finalCTATitleStyle}>Ready to Architect Your Future?</h2>
-            <p style={finalCTASubtitleStyle}>
-              Join industry leaders who have transformed their businesses with our 
-              strategic technology solutions.
-            </p>
-            <div style={finalCTAButtons}>
-              <Link to="/contact" style={{ textDecoration: 'none' }}>
-                <button style={ctaButtonStyle}>
-                  <FiTrendingUp style={{ marginRight: '12px' }} />
-                  Begin Strategic Consultation
-                  <FiArrowRight style={{ marginLeft: '12px' }} />
-                </button>
-              </Link>
-              <Link to="/demo" style={{ textDecoration: 'none' }}>
-                <button style={outlineButtonStyle}>
-                  Download Strategy Kit
-                </button>
-              </Link>
-            </div>
-            <div style={ctaTrustStyle}>
-              <span style={ctaTrustText}>Trusted by Fortune 500 companies and startups alike</span>
+              ))}
             </div>
           </div>
         </section>
       )}
 
       {/* Background Elements */}
-      <div style={woodGrainBackground} />
       <div style={particlesContainer}>
         {[...Array(30)].map((_, i) => (
           <div key={i} style={particleStyle(i)} />
         ))}
       </div>
-
-      {/* Animated Background Pattern */}
       <div style={animatedPattern} />
 
-      {/* Global Styles */}
       <style jsx>{`
         @keyframes blink {
           0%, 50% { opacity: 1; }
@@ -373,11 +358,11 @@ function Home() {
         @keyframes pulse {
           0%, 100% { 
             transform: scale(1);
-            box-shadow: 0 0 0 rgba(255, 184, 28, 0.4);
+            box-shadow: 0 0 0 rgba(255,255,255,0.4);
           }
           50% { 
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 184, 28, 0.6);
+            box-shadow: 0 0 20px rgba(255,255,255,0.6);
           }
         }
         
@@ -412,136 +397,38 @@ function Home() {
             transform: translateX(-50px) translateY(-50px);
           }
         }
+        
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
       `}</style>
     </div>
   );
 }
 
-// Updated Clients Data with Impact Metrics
-const clientsData = [
-  {
-    id: 1,
-    name: 'TechNova Solutions',
-    industry: 'FinTech',
-    testimonial: 'Strategic digital transformation increased our market efficiency by 45%',
-    initials: 'TN',
-    project: 'Enterprise Banking Platform',
-    growth: 45,
-    efficiency: 60
-  },
-  {
-    id: 2,
-    name: 'MediCare Plus',
-    industry: 'Healthcare',
-    testimonial: 'Intelligent architecture reduced patient wait times by 70%',
-    initials: 'MP',
-    project: 'Healthcare Management System',
-    growth: 38,
-    efficiency: 70
-  },
-  {
-    id: 3,
-    name: 'EduTech Global',
-    industry: 'Education',
-    testimonial: 'Scalable platform serving 250k+ students with 99.9% uptime',
-    initials: 'EG',
-    project: 'E-Learning Platform',
-    growth: 150,
-    efficiency: 85
-  },
-  {
-    id: 4,
-    name: 'RetailChain Pro',
-    industry: 'Retail',
-    testimonial: 'Intelligent inventory system reduced costs by 35% in Q1',
-    initials: 'RP',
-    project: 'Inventory Management System',
-    growth: 28,
-    efficiency: 65
-  }
-];
-
-// Enhanced Services Data
-const servicesData = [
-  {
-    id: 1,
-    title: 'Digital Architecture',
-    description: 'Strategic technology frameworks designed for growth and scalability',
-    icon: <FiCode size={24} />,
-    features: ['Enterprise Architecture', 'Microservices Design', 'Cloud Strategy', 'API-First'],
-    link: '/architecture'
-  },
-  {
-    id: 2,
-    title: 'AI & Automation',
-    description: 'Intelligent systems that enhance decision-making and operational efficiency',
-    icon: <FiSmartphone size={24} />,
-    features: ['Machine Learning', 'Process Automation', 'Predictive Analytics', 'AI Integration'],
-    link: '/ai-projects'
-  },
-  {
-    id: 3,
-    title: 'Cloud Transformation',
-    description: 'Modern cloud infrastructure that scales with your business ambitions',
-    icon: <FiCloud size={24} />,
-    features: ['Multi-Cloud Strategy', 'DevSecOps', 'Containerization', 'Auto-scaling'],
-    link: '/cloud-transformation'
-  },
-  {
-    id: 4,
-    title: 'Strategic Development',
-    description: 'Business-aligned software development that drives competitive advantage',
-    icon: <FiUsers size={24} />,
-    features: ['Agile Delivery', 'Business Analysis', 'Quality Assurance', 'Continuous Delivery'],
-    link: '/strategic-development'
-  },
-  {
-    id: 5,
-    title: 'Digital Experience',
-    description: 'User-centric design that engages customers and drives conversions',
-    icon: <FiAward size={24} />,
-    features: ['UX Strategy', 'Design Systems', 'Conversion Optimization', 'Accessibility'],
-    link: '/digital-experience'
-  },
-  {
-    id: 6,
-    title: 'Technology Strategy',
-    description: 'Comprehensive roadmap for sustainable digital transformation',
-    icon: <FiGlobe size={24} />,
-    features: ['Digital Roadmap', 'Technology Assessment', 'Risk Management', 'Innovation Labs'],
-    link: '/technology-strategy'
-  }
-];
-
-// ========== UPDATED STYLES ==========
+// ========== DEEP BLUE + SILVER STYLES ==========
 
 const containerStyle = {
   minHeight: '100vh',
-  background: 'linear-gradient(135deg, #FFFDF5 0%, #FFF9E6 50%, #FFF5D6 100%)',
-  color: '#333',
+  background: 'linear-gradient(145deg, #0a1f44 0%, #0b2b5c 100%)',
+  color: '#ffffff',
   position: 'relative',
   overflow: 'hidden',
   fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
 };
 
-const woodGrainBackground = {
+const backgroundPatternStyle = {
   position: 'absolute',
   top: 0,
   left: 0,
   right: 0,
   bottom: 0,
-  backgroundImage: `linear-gradient(
-      to bottom,
-      rgba(230, 0, 0, 0.03) 0%,
-      transparent 100%
-    ),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(255, 184, 28, 0.05) 2px,
-      rgba(255, 184, 28, 0.05) 4px
-    )`,
+  backgroundImage: `
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.08) 0%, transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(192,192,192,0.06) 0%, transparent 30%),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 8px)
+  `,
   pointerEvents: 'none',
   zIndex: 0
 };
@@ -552,8 +439,8 @@ const animatedPattern = {
   left: 0,
   right: 0,
   bottom: 0,
-  backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255, 184, 28, 0.05) 0%, transparent 50%),
-                   radial-gradient(circle at 75% 75%, rgba(230, 0, 0, 0.05) 0%, transparent 50%)`,
+  backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.02) 0%, transparent 50%),
+                   radial-gradient(circle at 75% 75%, rgba(192,192,192,0.02) 0%, transparent 50%)`,
   backgroundSize: '50px 50px',
   animation: 'patternMove 20s linear infinite',
   pointerEvents: 'none',
@@ -582,78 +469,15 @@ const logoContainerStyle = {
   marginBottom: '40px'
 };
 
-const logoStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '12px',
-  marginBottom: '8px',
-  position: 'relative'
-};
-
-const logoTextStyle = {
-  fontSize: '42px',
-  fontWeight: '900',
-  background: 'linear-gradient(45deg, #E60000, #FF6B00, #FFB81C)',
-  backgroundSize: '200% 200%',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-  letterSpacing: '1px',
-  animation: 'gradientShift 3s ease infinite'
-};
-
-const logoGlow = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '140%',
-  height: '140%',
-  background: 'radial-gradient(circle, rgba(255, 184, 28, 0.15) 0%, transparent 70%)',
-  filter: 'blur(10px)',
-  animation: 'glowPulse 3s ease-in-out infinite'
-};
-
-const logoDotStyle = {
-  width: '12px',
-  height: '12px',
-  background: 'linear-gradient(45deg, #E60000, #FFB81C)',
-  borderRadius: '50%',
-  animation: 'pulse 2s infinite',
-  boxShadow: '0 0 15px rgba(255, 184, 28, 0.5)'
-};
-
-const logoTaglineContainer = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-  gap: '4px'
-};
-
-const logoTaglineStyle = {
-  fontSize: '14px',
-  color: '#666',
-  letterSpacing: '2px',
-  fontWeight: '600',
-  textTransform: 'uppercase'
-};
-
-const logoUnderline = {
-  width: '70px',
-  height: '2px',
-  background: 'linear-gradient(90deg, #E60000, #FFB81C)',
-  borderRadius: '1px'
-};
-
 const heroHeadingStyle = {
   fontSize: 'clamp(2.8rem, 6vw, 4.5rem)',
   fontWeight: '800',
   lineHeight: '1.1',
   marginBottom: '16px',
-  color: '#1A1A1A',
-  minHeight: '5.2rem',
-  background: 'linear-gradient(45deg, #1A1A1A 30%, #333 70%)',
+  background: 'linear-gradient(135deg, #ffffff, #c0c0c0)',
   WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent'
+  WebkitTextFillColor: 'transparent',
+  minHeight: '5.2rem'
 };
 
 const secondaryTaglineContainer = {
@@ -665,37 +489,34 @@ const secondaryTaglineContainer = {
 };
 
 const targetIconStyle = {
-  color: '#FFB81C',
+  color: '#ffffff',
   fontSize: '20px'
 };
 
 const secondaryTaglineStyle = {
   fontSize: '1.5rem',
   fontWeight: '600',
-  color: '#E60000',
+  color: '#e0e0e0',
   letterSpacing: '0.5px'
 };
 
 const cursorStyle = {
   animation: 'blink 1s infinite',
   marginLeft: '6px',
-  color: '#FFB81C'
+  color: '#ffffff'
 };
 
 const heroSubtitleStyle = {
   fontSize: '1.3rem',
   lineHeight: '1.7',
-  color: '#555',
+  color: '#d1d5db',
   marginBottom: '45px',
   animation: 'fadeInUp 0.8s ease 0.4s both'
 };
 
 const highlightStyle = {
-  color: '#E60000',
-  fontWeight: '700',
-  background: 'linear-gradient(45deg, #E60000, #FFB81C)',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent'
+  color: '#ffffff',
+  fontWeight: '700'
 };
 
 const ctaContainerStyle = {
@@ -709,9 +530,8 @@ const primaryButtonStyle = {
   padding: '18px 40px',
   fontSize: '1rem',
   fontWeight: '700',
-  color: 'white',
-  background: 'linear-gradient(45deg, #E60000, #FF6B00, #FFB81C)',
-  backgroundSize: '200% 200%',
+  color: '#0a1f44',
+  background: 'linear-gradient(45deg, #ffffff, #e0e0e0)',
   border: 'none',
   borderRadius: '8px',
   cursor: 'pointer',
@@ -719,21 +539,20 @@ const primaryButtonStyle = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  boxShadow: '0 6px 25px rgba(230, 0, 0, 0.3)',
-  animation: 'gradientShift 3s ease infinite'
+  boxShadow: '0 6px 25px rgba(255,255,255,0.3)'
 };
 
 const secondaryButtonStyle = {
   padding: '18px 40px',
   fontSize: '1rem',
   fontWeight: '700',
-  color: '#E60000',
+  color: '#ffffff',
   background: 'transparent',
-  border: '2px solid #E60000',
+  border: '2px solid #ffffff',
   borderRadius: '8px',
   cursor: 'pointer',
   transition: 'all 0.3s ease',
-  boxShadow: '0 4px 15px rgba(230, 0, 0, 0.1)'
+  boxShadow: '0 4px 15px rgba(255,255,255,0.1)'
 };
 
 const trustIndicatorsStyle = {
@@ -752,188 +571,93 @@ const trustItemStyle = {
 const trustIcon = {
   width: '24px',
   height: '24px',
-  background: '#FFB81C',
+  background: '#ffffff',
   borderRadius: '50%',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  color: 'white',
+  color: '#0a1f44',
   fontWeight: 'bold'
 };
 
 const trustText = {
   fontSize: '14px',
-  color: '#666',
+  color: '#e0e0e0',
   fontWeight: '500'
 };
 
-const heroVisualStyle = {
+// Carousel Styles (replaces heroVisualStyle)
+const carouselContainerStyle = {
   flex: 1,
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  position: 'relative',
-  paddingLeft: '40px'
-};
-
-const heroCard = {
-  width: '380px',
-  background: 'rgba(255, 255, 255, 0.95)',
-  borderRadius: '16px',
-  border: '1px solid rgba(230, 0, 0, 0.1)',
-  boxShadow: '0 25px 60px rgba(230, 0, 0, 0.15)',
-  overflow: 'hidden',
+  paddingLeft: '40px',
+  background: 'rgba(255,255,255,0.1)',
   backdropFilter: 'blur(10px)',
-  animation: 'fadeInUp 0.8s ease 0.5s both'
+  borderRadius: '24px',
+  padding: '40px 20px',
+  border: '1px solid rgba(255,255,255,0.2)',
+  boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)'
 };
 
-const cardHeader = {
-  background: 'linear-gradient(90deg, #E60000, #FFB81C)',
-  padding: '20px',
-  display: 'flex',
-  alignItems: 'center',
-  gap: '12px'
+const carouselHeader = {
+  marginBottom: '20px'
 };
 
-const cardHeaderIcon = {
-  width: '32px',
-  height: '32px',
-  background: 'rgba(255, 255, 255, 0.2)',
-  borderRadius: '8px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: 'white',
-  fontSize: '18px'
-};
-
-const cardHeaderText = {
-  color: 'white',
+const carouselHeaderText = {
+  fontSize: '1.2rem',
   fontWeight: '600',
-  fontSize: '16px'
-};
-
-const cardContent = {
-  padding: '30px',
-  position: 'relative'
-};
-
-const metricRow = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  marginBottom: '12px'
-};
-
-const metricLabel = {
-  color: '#666',
-  fontSize: '14px',
-  fontWeight: '500'
-};
-
-const metricValue = {
-  color: '#E60000',
-  fontSize: '24px',
-  fontWeight: '700'
-};
-
-const progressBar = {
-  height: '8px',
-  background: 'rgba(230, 0, 0, 0.1)',
-  borderRadius: '4px',
-  marginBottom: '25px',
-  overflow: 'hidden'
-};
-
-const progressFill = {
-  height: '100%',
-  width: '85%',
-  background: 'linear-gradient(90deg, #E60000, #FFB81C)',
-  borderRadius: '4px',
-  animation: 'progressFill 2s ease-out'
-};
-
-const progressFill2 = {
-  height: '100%',
-  width: '93%',
-  background: 'linear-gradient(90deg, #E60000, #FFB81C)',
-  borderRadius: '4px',
-  animation: 'progressFill 2s ease-out 0.5s forwards'
-};
-
-const floatingCode = {
-  marginTop: '30px',
-  padding: '15px',
-  background: 'rgba(255, 184, 28, 0.05)',
-  borderRadius: '8px',
-  border: '1px solid rgba(255, 184, 28, 0.1)'
-};
-
-const codeLine = {
-  height: '3px',
-  background: 'rgba(230, 0, 0, 0.2)',
-  marginBottom: '8px',
-  borderRadius: '2px',
-  width: '100%'
-};
-
-const architectureBadge = {
-  position: 'absolute',
-  bottom: '20px',
-  right: '20px',
-  background: 'linear-gradient(45deg, #E60000, #FFB81C)',
-  padding: '8px 16px',
-  borderRadius: '20px',
-  boxShadow: '0 4px 15px rgba(230, 0, 0, 0.2)'
-};
-
-const architectureText = {
-  color: 'white',
-  fontSize: '12px',
-  fontWeight: '600',
+  color: '#ffffff',
   letterSpacing: '0.5px'
 };
 
-const floatingElement = {
-  position: 'absolute',
-  width: '80px',
-  height: '80px',
-  background: 'linear-gradient(45deg, rgba(230, 0, 0, 0.1), rgba(255, 184, 28, 0.1))',
-  borderRadius: '50%',
-  top: '20%',
-  right: '10%',
-  animation: 'float 8s ease-in-out infinite',
-  filter: 'blur(2px)'
+const carouselContentStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: '20px',
+  flexWrap: 'wrap',
+  minHeight: '100px'
 };
 
-const floatingElement2 = {
-  position: 'absolute',
-  width: '60px',
-  height: '60px',
-  background: 'linear-gradient(45deg, rgba(255, 184, 28, 0.1), rgba(230, 0, 0, 0.1))',
+const logoCardStyle = {
+  background: '#ffffff',
   borderRadius: '12px',
-  bottom: '15%',
-  left: '15%',
-  animation: 'float 6s ease-in-out infinite 1s',
-  filter: 'blur(1px)'
+  padding: '15px 20px',
+  minWidth: '120px',
+  textAlign: 'center',
+  boxShadow: '0 10px 20px -5px rgba(0,0,0,0.3)',
+  border: '1px solid #e0e0e0',
+  transition: 'transform 0.3s ease'
 };
 
-const floatingElement3 = {
-  position: 'absolute',
-  width: '40px',
-  height: '40px',
-  background: 'rgba(230, 0, 0, 0.05)',
-  borderRadius: '8px',
-  top: '60%',
-  right: '5%',
-  animation: 'float 7s ease-in-out infinite 0.5s',
-  filter: 'blur(1px)'
+const logoText = {
+  fontSize: '1rem',
+  fontWeight: '700',
+  color: '#0a1f44'
+};
+
+const carouselDots = {
+  display: 'flex',
+  justifyContent: 'center',
+  gap: '8px',
+  marginTop: '20px'
+};
+
+const dotStyle = {
+  width: '10px',
+  height: '10px',
+  borderRadius: '50%',
+  cursor: 'pointer',
+  transition: 'background-color 0.3s ease'
 };
 
 // Stats Section
 const statsSectionStyle = {
   padding: '100px 5%',
-  background: 'linear-gradient(135deg, #FFFDF5 0%, #FFF9E6 100%)',
+  background: 'transparent',
   maxWidth: '1400px',
   margin: '0 auto',
   position: 'relative',
@@ -948,16 +672,14 @@ const statsHeaderStyle = {
 const statsTitleStyle = {
   fontSize: '2.5rem',
   fontWeight: '800',
-  color: '#1A1A1A',
+  color: '#ffffff',
   marginBottom: '16px',
-  background: 'linear-gradient(45deg, #E60000, #FFB81C)',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent'
+  textShadow: '0 2px 5px rgba(0,0,0,0.3)'
 };
 
 const statsSubtitleStyle = {
   fontSize: '1.2rem',
-  color: '#666',
+  color: '#e0e0e0',
   maxWidth: '600px',
   margin: '0 auto'
 };
@@ -970,11 +692,11 @@ const statsGridStyle = {
 };
 
 const statCardStyle = {
-  background: 'rgba(255, 255, 255, 0.9)',
+  background: '#ffffff',
   borderRadius: '16px',
   padding: '35px 25px',
-  border: '1px solid rgba(230, 0, 0, 0.1)',
-  boxShadow: '0 10px 30px rgba(230, 0, 0, 0.08)',
+  border: '1px solid #e0e0e0',
+  boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.3)',
   textAlign: 'center',
   transition: 'all 0.3s ease',
   position: 'relative',
@@ -984,7 +706,7 @@ const statCardStyle = {
 const statNumberStyle = {
   fontSize: '3.5rem',
   fontWeight: '800',
-  background: 'linear-gradient(45deg, #E60000, #FFB81C)',
+  background: 'linear-gradient(135deg, #0a1f44, #1e3a8a)',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
   marginBottom: '8px'
@@ -992,23 +714,23 @@ const statNumberStyle = {
 
 const statLabelStyle = {
   fontSize: '1rem',
-  color: '#666',
+  color: '#2c3e50',
   fontWeight: '600',
   marginBottom: '15px'
 };
 
 const statBar = {
   height: '4px',
-  background: 'linear-gradient(90deg, #E60000, #FFB81C)',
+  background: 'linear-gradient(90deg, #0a1f44, #1e3a8a)',
   borderRadius: '2px',
   width: '60px',
   margin: '0 auto'
 };
 
-// Services Section
-const servicesSectionStyle = {
+// Training & Placements Section
+const trainingSectionStyle = {
   padding: '120px 5%',
-  background: 'white',
+  background: 'transparent',
   maxWidth: '1400px',
   margin: '0 auto',
   position: 'relative',
@@ -1017,22 +739,20 @@ const servicesSectionStyle = {
 
 const sectionHeaderStyle = {
   textAlign: 'center',
-  marginBottom: '60px'
+  marginBottom: '50px'
 };
 
 const sectionTitleStyle = {
   fontSize: '3rem',
   fontWeight: '800',
-  color: '#1A1A1A',
+  color: '#ffffff',
   marginBottom: '16px',
-  background: 'linear-gradient(45deg, #E60000, #FFB81C)',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent'
+  textShadow: '0 2px 5px rgba(0,0,0,0.3)'
 };
 
 const sectionSubtitleStyle = {
   fontSize: '1.2rem',
-  color: '#666',
+  color: '#e0e0e0',
   maxWidth: '600px',
   margin: '0 auto 20px'
 };
@@ -1040,442 +760,254 @@ const sectionSubtitleStyle = {
 const sectionDivider = {
   width: '80px',
   height: '4px',
-  background: 'linear-gradient(90deg, #E60000, #FFB81C)',
+  background: 'linear-gradient(90deg, #ffffff, #c0c0c0)',
   margin: '0 auto',
-  borderRadius: '2px'
+  borderRadius: '2px',
+  boxShadow: '0 2px 8px rgba(255,255,255,0.3)'
 };
 
-const servicesGridStyle = {
+const placementStatsGrid = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
   gap: '30px',
-  marginTop: '40px'
+  marginBottom: '60px'
 };
 
-const serviceCardStyle = {
-  background: 'rgba(255, 255, 255, 0.9)',
+const placementStatCard = {
+  background: '#ffffff',
   borderRadius: '16px',
-  padding: '35px',
-  border: '1px solid rgba(230, 0, 0, 0.1)',
-  transition: 'all 0.3s ease',
-  boxShadow: '0 10px 30px rgba(230, 0, 0, 0.08)',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-  position: 'relative',
-  overflow: 'hidden'
+  padding: '30px 20px',
+  border: '1px solid #e0e0e0',
+  boxShadow: '0 10px 30px -10px rgba(0,0,0,0.3)',
+  textAlign: 'center',
+  transition: 'all 0.3s ease'
 };
 
-const serviceIconContainer = {
-  position: 'relative',
-  marginBottom: '25px'
-};
-
-const serviceIconStyle = {
-  width: '70px',
-  height: '70px',
-  background: 'linear-gradient(135deg, rgba(230, 0, 0, 0.1), rgba(255, 184, 28, 0.2))',
-  borderRadius: '16px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: '#E60000',
-  fontSize: '28px',
-  position: 'relative',
-  zIndex: 2
-};
-
-const serviceIconGlow = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '100px',
-  height: '100px',
-  background: 'radial-gradient(circle, rgba(255, 184, 28, 0.2) 0%, transparent 70%)',
-  filter: 'blur(10px)',
-  animation: 'glowPulse 3s ease-in-out infinite'
-};
-
-const serviceTitleStyle = {
-  fontSize: '1.4rem',
-  fontWeight: '700',
-  color: '#1A1A1A',
+const placementStatIcon = {
+  fontSize: '32px',
+  color: '#0a1f44',
   marginBottom: '15px'
 };
 
-const serviceDescStyle = {
-  fontSize: '1rem',
-  color: '#666',
-  lineHeight: '1.6',
-  marginBottom: '25px',
-  flex: 1
-};
-
-const serviceFeatures = {
-  marginBottom: '25px',
-  width: '100%'
-};
-
-const featureStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '10px',
-  marginBottom: '10px',
-  fontSize: '14px',
-  color: '#555'
-};
-
-const featureText = {
-  fontSize: '13px',
-  color: '#666'
-};
-
-const serviceLinkStyle = {
-  color: '#E60000',
-  textDecoration: 'none',
-  fontWeight: '700',
-  display: 'flex',
-  alignItems: 'center',
-  transition: 'all 0.3s ease',
-  padding: '12px 20px',
-  background: 'rgba(230, 0, 0, 0.05)',
-  borderRadius: '8px',
-  width: '100%',
-  justifyContent: 'center',
-  border: '1px solid rgba(230, 0, 0, 0.1)'
-};
-
-// Strategy Section
-const strategySectionStyle = {
-  padding: '120px 5%',
-  background: 'linear-gradient(135deg, #FFFDF5 0%, #FFF9E6 100%)',
-  maxWidth: '1400px',
-  margin: '0 auto',
-  position: 'relative',
-  zIndex: 1
-};
-
-const strategyContentStyle = {
-  display: 'flex',
-  gap: '60px',
-  alignItems: 'center'
-};
-
-const strategyTextContainer = {
-  flex: 1
-};
-
-const strategyTitleStyle = {
+const placementStatValue = {
   fontSize: '2.5rem',
   fontWeight: '800',
-  color: '#1A1A1A',
-  marginBottom: '20px',
-  background: 'linear-gradient(45deg, #E60000, #FFB81C)',
+  background: 'linear-gradient(135deg, #0a1f44, #1e3a8a)',
   WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent'
+  WebkitTextFillColor: 'transparent',
+  marginBottom: '5px'
 };
 
-const strategyDescriptionStyle = {
-  fontSize: '1.2rem',
-  color: '#666',
-  lineHeight: '1.6',
-  marginBottom: '40px'
+const placementStatLabel = {
+  fontSize: '1rem',
+  color: '#2c3e50',
+  fontWeight: '600'
 };
 
-const strategyPoints = {
+const trainingColumnsStyle = {
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  gap: '40px',
+  marginTop: '40px'
+};
+
+const trainingLeftStyle = {
+  background: 'rgba(255,255,255,0.1)',
+  backdropFilter: 'blur(8px)',
+  border: '1px solid rgba(255,255,255,0.2)',
+  borderRadius: '24px',
+  padding: '40px'
+};
+
+const trainingSubtitle = {
+  fontSize: '2rem',
+  fontWeight: '700',
+  color: '#ffffff',
+  marginBottom: '30px',
+  fontFamily: "'Playfair Display', serif"
+};
+
+const programsGridStyle = {
   display: 'flex',
   flexDirection: 'column',
   gap: '30px'
 };
 
-const strategyPoint = {
-  display: 'flex',
-  gap: '20px',
-  alignItems: 'flex-start'
-};
-
-const strategyPointIcon = {
-  width: '40px',
-  height: '40px',
-  background: 'linear-gradient(45deg, #E60000, #FFB81C)',
-  borderRadius: '10px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: 'white',
-  fontWeight: '700',
-  fontSize: '18px',
-  flexShrink: 0
-};
-
-const strategyPointTitle = {
-  fontSize: '1.2rem',
-  fontWeight: '700',
-  color: '#1A1A1A',
-  marginBottom: '8px'
-};
-
-const strategyPointText = {
-  fontSize: '1rem',
-  color: '#666',
-  lineHeight: '1.5'
-};
-
-const strategyVisualStyle = {
-  flex: 1,
-  display: 'flex',
-  justifyContent: 'center'
-};
-
-const strategyChart = {
-  width: '300px',
-  height: '200px',
-  background: 'rgba(255, 255, 255, 0.9)',
+const programCardStyle = {
+  background: '#ffffff',
   borderRadius: '16px',
   padding: '30px',
-  border: '1px solid rgba(230, 0, 0, 0.1)',
-  boxShadow: '0 10px 30px rgba(230, 0, 0, 0.08)',
-  position: 'relative'
-};
-
-const chartBar = {
-  height: '30px',
-  background: 'linear-gradient(90deg, #E60000, #FFB81C)',
-  marginBottom: '15px',
-  borderRadius: '8px',
-  width: ['60%', '85%', '95%', '100%'][Math.floor(Math.random() * 4)]
-};
-
-const chartLabels = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  marginTop: '20px',
-  fontSize: '12px',
-  color: '#666',
-  fontWeight: '600'
-};
-
-// Clients Section
-const clientsSectionStyle = {
-  padding: '120px 5%',
-  background: 'white',
-  maxWidth: '1400px',
-  margin: '0 auto',
-  position: 'relative',
-  zIndex: 1
-};
-
-const clientsGridStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-  gap: '30px',
-  marginTop: '40px'
-};
-
-const clientCardStyle = {
-  background: 'white',
-  borderRadius: '16px',
-  padding: '35px',
-  border: '1px solid rgba(230, 0, 0, 0.1)',
-  boxShadow: '0 10px 30px rgba(230, 0, 0, 0.08)',
+  border: '1px solid #e0e0e0',
+  boxShadow: '0 10px 30px -10px rgba(0,0,0,0.2)',
   transition: 'all 0.3s ease'
 };
 
-const clientLogoContainer = {
-  position: 'relative',
-  marginBottom: '25px'
-};
-
-const clientLogoPlaceholder = {
-  width: '70px',
-  height: '70px',
-  background: 'linear-gradient(135deg, #E60000, #FFB81C)',
-  borderRadius: '50%',
+const programIcon = {
+  width: '50px',
+  height: '50px',
+  background: 'linear-gradient(135deg, #0a1f44, #1e3a8a)',
+  borderRadius: '12px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  marginBottom: '15px'
-};
-
-const clientInitials = {
-  color: 'white',
+  color: '#ffffff',
   fontSize: '24px',
-  fontWeight: '700'
-};
-
-const clientLogoOverlay = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  width: '70px',
-  height: '70px',
-  background: 'radial-gradient(circle, transparent 30%, rgba(255, 255, 255, 0.2) 70%)',
-  borderRadius: '50%'
-};
-
-const clientInfoStyle = {
-  textAlign: 'left'
-};
-
-const clientNameStyle = {
-  fontSize: '1.3rem',
-  fontWeight: '700',
-  color: '#1A1A1A',
-  marginBottom: '8px'
-};
-
-const clientIndustryStyle = {
-  fontSize: '0.9rem',
-  color: '#E60000',
-  fontWeight: '600',
-  marginBottom: '15px',
-  background: 'rgba(230, 0, 0, 0.1)',
-  padding: '6px 12px',
-  borderRadius: '20px',
-  display: 'inline-block'
-};
-
-const clientImpact = {
-  display: 'flex',
-  gap: '20px',
-  marginBottom: '15px'
-};
-
-const impactMetric = {
-  display: 'flex',
-  flexDirection: 'column'
-};
-
-const impactLabel = {
-  fontSize: '12px',
-  color: '#666',
-  marginBottom: '4px'
-};
-
-const impactValue = {
-  fontSize: '16px',
-  fontWeight: '700',
-  color: '#E60000'
-};
-
-const clientTestimonialStyle = {
-  fontSize: '1rem',
-  color: '#555',
-  fontStyle: 'italic',
-  lineHeight: '1.6',
   marginBottom: '20px'
 };
 
-const clientDetails = {
-  paddingTop: '15px',
-  borderTop: '1px solid rgba(230, 0, 0, 0.1)'
+const programTitle = {
+  fontSize: '1.3rem',
+  fontWeight: '700',
+  color: '#0a1f44',
+  marginBottom: '12px'
 };
 
-const clientDetailItem = {
+const programDescription = {
+  fontSize: '0.95rem',
+  color: '#2c3e50',
+  lineHeight: '1.5',
+  marginBottom: '20px'
+};
+
+const programMeta = {
   display: 'flex',
-  alignItems: 'center',
-  fontSize: '14px',
-  color: '#666'
+  gap: '20px',
+  fontSize: '0.9rem',
+  color: '#64748b'
 };
 
-// Final CTA
-const finalCTAStyle = {
-  padding: '140px 5%',
-  background: 'linear-gradient(135deg, #FFFDF5 0%, #FFF9E6 100%)',
-  maxWidth: '1400px',
-  margin: '0 auto',
-  position: 'relative',
-  zIndex: 1
+const programDuration = {
+  display: 'flex',
+  alignItems: 'center'
 };
 
-const finalCTAContentStyle = {
-  textAlign: 'center',
-  maxWidth: '700px',
-  margin: '0 auto',
-  padding: '60px',
-  background: 'white',
+const programFormat = {
+  display: 'flex',
+  alignItems: 'center'
+};
+
+const trainingRightStyle = {
+  background: 'rgba(255,255,255,0.1)',
+  backdropFilter: 'blur(8px)',
+  border: '1px solid rgba(255,255,255,0.2)',
   borderRadius: '24px',
-  border: '1px solid rgba(230, 0, 0, 0.1)',
-  boxShadow: '0 20px 60px rgba(230, 0, 0, 0.1)',
-  position: 'relative'
+  padding: '40px'
 };
 
-const finalCTAIcon = {
-  width: '60px',
-  height: '60px',
-  background: 'linear-gradient(135deg, #E60000, #FFB81C)',
+const partnerStatsBox = {
+  background: '#ffffff',
   borderRadius: '16px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: 'white',
-  fontSize: '28px',
-  margin: '0 auto 30px'
+  padding: '30px',
+  marginBottom: '30px',
+  border: '1px solid #e0e0e0',
+  boxShadow: '0 10px 30px -10px rgba(0,0,0,0.2)'
 };
 
-const finalCTATitleStyle = {
-  fontSize: '2.8rem',
-  fontWeight: '800',
-  color: '#1A1A1A',
-  marginBottom: '20px',
-  background: 'linear-gradient(45deg, #E60000, #FFB81C)',
+const partnerStatRow = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: '12px 0',
+  borderBottom: '1px solid #e2e8f0'
+};
+
+const partnerStatLabel = {
+  fontSize: '1rem',
+  color: '#2c3e50',
+  fontWeight: '500'
+};
+
+const partnerStatValue = {
+  fontSize: '1.5rem',
+  fontWeight: '700',
+  background: 'linear-gradient(135deg, #0a1f44, #1e3a8a)',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent'
 };
 
-const finalCTASubtitleStyle = {
-  fontSize: '1.2rem',
-  color: '#666',
-  marginBottom: '40px',
-  lineHeight: '1.6'
+const companyTitle = {
+  fontSize: '1.5rem',
+  fontWeight: '700',
+  color: '#ffffff',
+  marginBottom: '20px'
 };
 
-const finalCTAButtons = {
-  display: 'flex',
-  gap: '20px',
-  justifyContent: 'center',
+const companyGrid = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(2, 1fr)',
+  gap: '10px',
   marginBottom: '30px'
 };
 
-const ctaButtonStyle = {
-  padding: '20px 50px',
+const companyBadge = {
+  background: '#ffffff',
+  color: '#0a1f44',
+  padding: '10px',
+  borderRadius: '8px',
+  fontSize: '0.9rem',
+  fontWeight: '600',
+  textAlign: 'center',
+  border: '1px solid #e0e0e0',
+  boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
+};
+
+const placementCTAContainer = {
+  textAlign: 'center',
+  marginTop: '30px'
+};
+
+const placementCTAButton = {
+  padding: '16px 40px',
   fontSize: '1.1rem',
   fontWeight: '700',
-  color: 'white',
-  background: 'linear-gradient(45deg, #E60000, #FFB81C)',
+  color: '#0a1f44',
+  background: 'linear-gradient(45deg, #ffffff, #e0e0e0)',
   border: 'none',
-  borderRadius: '10px',
+  borderRadius: '8px',
   cursor: 'pointer',
   transition: 'all 0.3s ease',
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  boxShadow: '0 10px 30px rgba(230, 0, 0, 0.3)',
-  animation: 'pulse 2s infinite'
+  boxShadow: '0 10px 30px rgba(255,255,255,0.2)'
 };
 
-const outlineButtonStyle = {
-  padding: '20px 50px',
-  fontSize: '1.1rem',
-  fontWeight: '700',
-  color: '#E60000',
+// Partners Marquee Section
+const partnersSectionStyle = {
+  padding: '80px 5%',
   background: 'transparent',
-  border: '2px solid #E60000',
-  borderRadius: '10px',
-  cursor: 'pointer',
-  transition: 'all 0.3s ease',
-  boxShadow: '0 10px 30px rgba(230, 0, 0, 0.1)'
+  maxWidth: '1400px',
+  margin: '0 auto',
+  position: 'relative',
+  zIndex: 1,
+  overflow: 'hidden'
 };
 
-const ctaTrustStyle = {
-  marginTop: '20px'
+const marqueeContainer = {
+  width: '100%',
+  overflow: 'hidden',
+  padding: '20px 0'
 };
 
-const ctaTrustText = {
-  fontSize: '14px',
-  color: '#666',
-  fontStyle: 'italic'
+const marqueeContent = {
+  display: 'flex',
+  animation: 'marquee 30s linear infinite',
+  gap: '40px',
+  alignItems: 'center'
+};
+
+const partnerItem = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '10px',
+  padding: '10px 20px',
+  background: '#ffffff',
+  borderRadius: '40px',
+  border: '1px solid #e0e0e0',
+  whiteSpace: 'nowrap',
+  color: '#0a1f44',
+  fontWeight: '600'
+};
+
+const partnerName = {
+  fontSize: '16px'
 };
 
 // Particles
@@ -1493,7 +1025,7 @@ const particleStyle = (i) => ({
   position: 'absolute',
   width: Math.random() * 5 + 2 + 'px',
   height: Math.random() * 5 + 2 + 'px',
-  background: `rgba(${Math.random() > 0.5 ? '230, 0, 0' : '255, 184, 28'}, ${Math.random() * 0.3 + 0.1})`,
+  background: `rgba(255,255,255,${Math.random() * 0.2 + 0.05})`,
   borderRadius: '50%',
   top: Math.random() * 100 + '%',
   left: Math.random() * 100 + '%',

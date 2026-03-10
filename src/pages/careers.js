@@ -14,84 +14,106 @@ function Careers() {
     portfolio: ''
   });
 
+  // Updated job openings - including AI/ML/DS/GenAI roles, no experience badge
   const jobOpenings = [
     {
       id: 1,
-      title: "Frontend Developer",
-      department: "Engineering",
+      title: "Generative AI Engineer",
+      department: "AI Research",
       location: "Remote",
       type: "Full-time",
-      experience: "2+ years",
-      salary: "₹8-15 LPA",
-      email: "careers@lohs.com",
-      subject: "Application for Frontend Developer Position",
-      skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Framer Motion"],
-      description: "Build beautiful, responsive web applications using modern frameworks with performance optimization."
+      email: "lohssoftwaresolutions@gmail.com",
+      subject: "Application for Generative AI Engineer Position",
+      skills: ["Python", "PyTorch/TensorFlow", "LangChain", "LLMs", "RAG"],
+      description: "Develop cutting-edge generative AI applications and integrate large language models into production systems."
     },
     {
       id: 2,
-      title: "Backend Engineer",
-      department: "Engineering",
+      title: "Data Scientist",
+      department: "Data Science",
       location: "Hybrid",
       type: "Full-time",
-      experience: "3+ years",
-      salary: "₹12-20 LPA",
-      email: "careers@lohs.com",
-      subject: "Application for Backend Engineer Position",
-      skills: ["Node.js", "Python", "PostgreSQL", "AWS", "Docker", "Microservices"],
-      description: "Design and implement scalable backend systems, APIs, and microservices architecture."
+      email: "lohssoftwaresolutions@gmail.com",
+      subject: "Application for Data Scientist Position",
+      skills: ["Python", "Machine Learning", "SQL", "Statistics", "Tableau"],
+      description: "Analyze complex datasets, build predictive models, and drive data-informed decisions."
     },
     {
       id: 3,
-      title: "UX/UI Designer",
-      department: "Design",
+      title: "Machine Learning Engineer",
+      department: "Engineering",
       location: "Remote",
       type: "Full-time",
-      experience: "2+ years",
-      salary: "₹6-12 LPA",
-      email: "careers@lohs.com",
-      subject: "Application for UX/UI Designer Position",
-      skills: ["Figma", "Adobe XD", "Prototyping", "User Research", "Design Systems"],
-      description: "Create intuitive and engaging user interfaces and experiences with user-centric design approach."
+      email: "lohssoftwaresolutions@gmail.com",
+      subject: "Application for Machine Learning Engineer Position",
+      skills: ["Python", "MLOps", "Docker", "Scikit-learn", "AWS SageMaker"],
+      description: "Design and deploy scalable machine learning pipelines and models."
     },
     {
       id: 4,
+      title: "AI/ML Engineer",
+      department: "AI Solutions",
+      location: "Hybrid",
+      type: "Full-time",
+      email: "lohssoftwaresolutions@gmail.com",
+      subject: "Application for AI/ML Engineer Position",
+      skills: ["Python", "Deep Learning", "NLP", "Computer Vision", "GCP"],
+      description: "Build end-to-end AI solutions, from data preprocessing to model deployment."
+    },
+    {
+      id: 5,
+      title: "React Developer",
+      department: "Engineering",
+      location: "Remote",
+      type: "Full-time",
+      email: "lohssoftwaresolutions@gmail.com",
+      subject: "Application for React Developer Position",
+      skills: ["React", "TypeScript", "Next.js", "Redux", "Tailwind CSS"],
+      description: "Build modern, performant web applications using React and related technologies."
+    },
+    {
+      id: 6,
+      title: "Flutter Developer",
+      department: "Engineering",
+      location: "Remote",
+      type: "Full-time",
+      email: "lohssoftwaresolutions@gmail.com",
+      subject: "Application for Flutter Developer Position",
+      skills: ["Flutter", "Dart", "Mobile UI", "Firebase", "REST APIs"],
+      description: "Develop cross-platform mobile applications with Flutter for iOS and Android."
+    },
+    {
+      id: 7,
+      title: "Python Developer",
+      department: "Engineering",
+      location: "Hybrid",
+      type: "Full-time",
+      email: "lohssoftwaresolutions@gmail.com",
+      subject: "Application for Python Developer Position",
+      skills: ["Python", "Django/Flask", "PostgreSQL", "REST APIs", "AWS"],
+      description: "Build scalable backend services and APIs using Python and modern frameworks."
+    },
+    {
+      id: 8,
       title: "DevOps Engineer",
       department: "Engineering",
       location: "Hybrid",
       type: "Full-time",
-      experience: "3+ years",
-      salary: "₹10-18 LPA",
-      email: "careers@lohs.com",
+      email: "lohssoftwaresolutions@gmail.com",
       subject: "Application for DevOps Engineer Position",
-      skills: ["AWS", "Kubernetes", "Docker", "CI/CD", "Terraform", "Monitoring"],
-      description: "Manage cloud infrastructure, implement CI/CD pipelines, and ensure system reliability."
+      skills: ["AWS", "Docker", "Kubernetes", "CI/CD", "Terraform"],
+      description: "Manage cloud infrastructure, automate deployments, and ensure system reliability."
     },
     {
-      id: 5,
-      title: "Mobile App Developer",
-      department: "Engineering",
+      id: 9,
+      title: "UI/UX Designer",
+      department: "Design",
       location: "Remote",
       type: "Full-time",
-      experience: "2+ years",
-      salary: "₹8-14 LPA",
-      email: "careers@lohs.com",
-      subject: "Application for Mobile App Developer Position",
-      skills: ["React Native", "Flutter", "iOS", "Android", "Firebase"],
-      description: "Develop cross-platform mobile applications with native performance and smooth animations."
-    },
-    {
-      id: 6,
-      title: "Cloud Solutions Architect",
-      department: "Engineering",
-      location: "Hybrid",
-      type: "Full-time",
-      experience: "4+ years",
-      salary: "₹15-25 LPA",
-      email: "careers@lohs.com",
-      subject: "Application for Cloud Solutions Architect Position",
-      skills: ["AWS", "Azure", "Google Cloud", "Terraform", "Security", "Architecture"],
-      description: "Design and implement cloud infrastructure solutions and migration strategies for enterprise clients."
+      email: "lohssoftwaresolutions@gmail.com",
+      subject: "Application for UI/UX Designer Position",
+      skills: ["Figma", "Adobe XD", "User Research", "Prototyping", "Design Systems"],
+      description: "Create intuitive and engaging user interfaces with a focus on user experience."
     }
   ];
 
@@ -147,7 +169,7 @@ ${name}
     `.trim();
 
     const subject = selectedJob ? selectedJob.subject : `Application for ${position}`;
-    const toEmail = selectedJob ? selectedJob.email : "careers@lohs.com";
+    const toEmail = selectedJob ? selectedJob.email : "lohssoftwaresolutions@gmail.com";
 
     return `mailto:${toEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
@@ -161,10 +183,11 @@ ${name}
     <div style={{
       padding: "100px 20px 80px",
       fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-      backgroundColor: "#0a1f44",
+      background: "linear-gradient(145deg, #0a1f44 0%, #0b2b5c 100%)",
       color: "#ffffff",
       minHeight: "100vh",
       position: "relative",
+      overflowX: "hidden"
     }}>
       {/* Background Pattern */}
       <div style={{
@@ -173,7 +196,11 @@ ${name}
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundImage: `radial-gradient(circle at 20% 80%, rgba(67, 97, 238, 0.1) 0%, transparent 50%)`,
+        backgroundImage: `
+          radial-gradient(circle at 10% 20%, rgba(255,255,255,0.08) 0%, transparent 30%),
+          radial-gradient(circle at 90% 80%, rgba(192,192,192,0.06) 0%, transparent 30%),
+          repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 8px)
+        `,
         zIndex: 0,
       }} />
       
@@ -181,22 +208,27 @@ ${name}
         {/* Page Header */}
         <div style={{ textAlign: "center", marginBottom: "80px" }}>
           <h1 style={{
-            fontSize: "3.5rem",
+            fontSize: "3.8rem",
             fontWeight: "800",
-            background: "linear-gradient(135deg, #ffffff 0%, #b0c4ff 100%)",
+            background: "linear-gradient(135deg, #ffffff 0%, #c0c0c0 80%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            marginBottom: "20px"
+            marginBottom: "20px",
+            textShadow: "0 4px 30px rgba(255,255,255,0.2)"
           }}>
             Join Our Team
           </h1>
           <p style={{
             fontSize: "1.2rem",
-            color: "#b0c4ff",
+            color: "#d1d5db",
             maxWidth: "600px",
             margin: "0 auto",
-            lineHeight: 1.6
+            lineHeight: 1.6,
+            background: "rgba(255,255,255,0.05)",
+            padding: "20px 30px",
+            borderRadius: "60px",
+            backdropFilter: "blur(10px)",
+            border: "1px solid rgba(255,255,255,0.2)"
           }}>
             Work with talented people at the forefront of technology innovation.
             We're looking for passionate individuals to help build the future.
@@ -207,9 +239,10 @@ ${name}
         <div style={{ marginBottom: "80px" }}>
           <h2 style={{
             textAlign: "center",
-            fontSize: "2.5rem",
+            fontSize: "2.8rem",
             color: "#ffffff",
-            marginBottom: "50px"
+            marginBottom: "50px",
+            textShadow: "0 2px 10px rgba(0,0,0,0.3)"
           }}>
             Why Work With Us
           </h2>
@@ -220,21 +253,24 @@ ${name}
           }}>
             {benefits.map((benefit, index) => (
               <div key={index} style={{
-                backgroundColor: "rgba(16, 23, 48, 0.8)",
+                background: "rgba(255,255,255,0.1)",
+                backdropFilter: "blur(8px)",
+                border: "1px solid rgba(255,255,255,0.3)",
                 padding: "30px",
                 borderRadius: "20px",
-                border: "1px solid rgba(67, 97, 238, 0.3)",
                 textAlign: "center",
                 transition: "all 0.3s ease",
                 cursor: "default",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-5px)";
-                e.currentTarget.style.borderColor = "#4361ee";
+                e.currentTarget.style.borderColor = "#ffffff";
+                e.currentTarget.style.boxShadow = "0 20px 30px -10px rgba(255,255,255,0.2)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.borderColor = "rgba(67, 97, 238, 0.3)";
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.3)";
+                e.currentTarget.style.boxShadow = "none";
               }}>
                 <div style={{
                   fontSize: "2.5rem",
@@ -248,7 +284,7 @@ ${name}
                   marginBottom: "10px"
                 }}>{benefit.title}</h3>
                 <p style={{
-                  color: "#b0c4ff",
+                  color: "#e0e0e0",
                   fontSize: "1rem"
                 }}>{benefit.description}</p>
               </div>
@@ -259,10 +295,11 @@ ${name}
         {/* Job Openings */}
         <div style={{ marginBottom: "60px" }}>
           <h2 style={{
-            fontSize: "2.5rem",
+            fontSize: "2.8rem",
             color: "#ffffff",
             marginBottom: "40px",
-            textAlign: "center"
+            textAlign: "center",
+            textShadow: "0 2px 10px rgba(0,0,0,0.3)"
           }}>
             Open Positions
           </h2>
@@ -273,20 +310,23 @@ ${name}
           }}>
             {jobOpenings.map((job) => (
               <div key={job.id} style={{
-                backgroundColor: "rgba(16, 23, 48, 0.8)",
+                background: "#ffffff",
                 padding: "30px",
                 borderRadius: "20px",
-                border: "1px solid rgba(67, 97, 238, 0.3)",
+                border: "1px solid #e0e0e0",
+                boxShadow: "0 15px 30px -10px rgba(0,0,0,0.3)",
                 transition: "all 0.3s ease",
                 cursor: "default",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-10px)";
-                e.currentTarget.style.borderColor = "#4361ee";
+                e.currentTarget.style.borderColor = "#0a1f44";
+                e.currentTarget.style.boxShadow = "0 25px 40px -10px #0a1f44";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.borderColor = "rgba(67, 97, 238, 0.3)";
+                e.currentTarget.style.borderColor = "#e0e0e0";
+                e.currentTarget.style.boxShadow = "0 15px 30px -10px rgba(0,0,0,0.3)";
               }}>
                 <div style={{
                   display: "flex",
@@ -297,8 +337,8 @@ ${name}
                   <div>
                     <div style={{
                       display: "inline-block",
-                      backgroundColor: "rgba(67, 97, 238, 0.2)",
-                      color: "#b0c4ff",
+                      backgroundColor: "rgba(10,31,68,0.1)",
+                      color: "#0a1f44",
                       padding: "6px 15px",
                       borderRadius: "20px",
                       fontSize: "0.9rem",
@@ -307,20 +347,10 @@ ${name}
                       {job.department}
                     </div>
                     <h3 style={{
-                      fontSize: "1.5rem",
-                      color: "#ffffff",
+                      fontSize: "1.6rem",
+                      color: "#0a1f44",
                       marginBottom: "10px"
                     }}>{job.title}</h3>
-                  </div>
-                  <div style={{
-                    backgroundColor: "rgba(16, 185, 129, 0.2)",
-                    color: "#10b981",
-                    padding: "6px 12px",
-                    borderRadius: "6px",
-                    fontSize: "0.9rem",
-                    fontWeight: "600"
-                  }}>
-                    {job.experience}
                   </div>
                 </div>
                 
@@ -334,7 +364,7 @@ ${name}
                     display: "flex",
                     alignItems: "center",
                     gap: "5px",
-                    color: "#8892b0",
+                    color: "#2c3e50",
                     fontSize: "0.9rem"
                   }}>
                     📍 {job.location}
@@ -343,25 +373,15 @@ ${name}
                     display: "flex",
                     alignItems: "center",
                     gap: "5px",
-                    color: "#8892b0",
+                    color: "#2c3e50",
                     fontSize: "0.9rem"
                   }}>
                     ⏱️ {job.type}
                   </span>
-                  <span style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "5px",
-                    color: "#10b981",
-                    fontSize: "0.9rem",
-                    fontWeight: "600"
-                  }}>
-                    💰 {job.salary}
-                  </span>
                 </div>
                 
                 <p style={{
-                  color: "#b0c4ff",
+                  color: "#2c3e50",
                   lineHeight: 1.6,
                   marginBottom: "20px",
                   fontSize: "0.95rem"
@@ -375,8 +395,8 @@ ${name}
                 }}>
                   {job.skills.map((skill, index) => (
                     <span key={index} style={{
-                      backgroundColor: "rgba(67, 97, 238, 0.2)",
-                      color: "#b0c4ff",
+                      backgroundColor: "rgba(10,31,68,0.1)",
+                      color: "#0a1f44",
                       padding: "5px 12px",
                       borderRadius: "15px",
                       fontSize: "0.85rem"
@@ -389,7 +409,7 @@ ${name}
                 <button 
                   onClick={() => handleApplyClick(job)}
                   style={{
-                    backgroundColor: "#4361ee",
+                    background: "linear-gradient(135deg, #0a1f44, #1e3a8a)",
                     color: "white",
                     border: "none",
                     padding: "12px 24px",
@@ -398,15 +418,16 @@ ${name}
                     cursor: "pointer",
                     width: "100%",
                     transition: "all 0.3s ease",
-                    fontSize: "1rem"
+                    fontSize: "1rem",
+                    boxShadow: "0 8px 15px -5px #0a1f44"
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#3a0ca3";
                     e.currentTarget.style.transform = "scale(1.02)";
+                    e.currentTarget.style.boxShadow = "0 15px 25px -5px #0a1f44";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "#4361ee";
                     e.currentTarget.style.transform = "scale(1)";
+                    e.currentTarget.style.boxShadow = "0 8px 15px -5px #0a1f44";
                   }}
                 >
                   Apply Now
@@ -418,59 +439,62 @@ ${name}
 
         {/* Direct Email Application Section */}
         <div style={{
-          backgroundColor: "rgba(67, 97, 238, 0.1)",
+          background: "rgba(255,255,255,0.1)",
+          backdropFilter: "blur(10px)",
+          border: "1px solid rgba(255,255,255,0.2)",
           padding: "40px",
           borderRadius: "20px",
           marginBottom: "60px",
-          border: "1px solid rgba(67, 97, 238, 0.3)",
           textAlign: "center"
         }}>
           <h2 style={{
-            fontSize: "2rem",
+            fontSize: "2.5rem",
             color: "#ffffff",
-            marginBottom: "15px"
+            marginBottom: "15px",
+            textShadow: "0 2px 5px rgba(0,0,0,0.3)"
           }}>
             📧 Direct Email Application
           </h2>
           <p style={{
-            color: "#b0c4ff",
+            color: "#e0e0e0",
             marginBottom: "25px",
             fontSize: "1.1rem",
             maxWidth: "800px",
             margin: "0 auto 25px",
             lineHeight: 1.6
           }}>
-            Send your resume directly to: <strong style={{ color: "#00d4ff" }}>careers@lohs.com</strong>
+            Send your resume directly to: <strong style={{ color: "#ffffff" }}>lohssoftwaresolutions@gmail.com</strong>
           </p>
           <p style={{
-            color: "#b0c4ff",
+            color: "#e0e0e0",
             marginBottom: "30px",
             fontSize: "1rem"
           }}>
             Include: Resume, Cover Letter, Portfolio/GitHub links, and mention the position you're applying for
           </p>
           <a 
-            href="mailto:careers@lohs.com?subject=Job Application&body=Dear LOHS Team,%0D%0A%0D%0AI am interested in applying for a position at LOHS. Please find my details below:%0D%0A%0D%0APosition: [Mention Position]%0D%0AExperience: [Your Experience]%0D%0AResume: [Attached/Google Drive Link]%0D%0APortfolio: [Your Portfolio Link]%0D%0A%0D%0AThank you,%0D%0A[Your Name]"
+            href="mailto:lohssoftwaresolutions@gmail.com?subject=Job Application&body=Dear LOHS Team,%0D%0A%0D%0AI am interested in applying for a position at LOHS. Please find my details below:%0D%0A%0D%0APosition: [Mention Position]%0D%0AExperience: [Your Experience]%0D%0AResume: [Attached/Google Drive Link]%0D%0APortfolio: [Your Portfolio Link]%0D%0A%0D%0AThank you,%0D%0A[Your Name]"
             style={{
-              backgroundColor: "#10b981",
-              color: "white",
+              background: "linear-gradient(135deg, #ffffff, #e0e0e0)",
+              color: "#0a1f44",
               textDecoration: "none",
               padding: "15px 40px",
-              borderRadius: "8px",
-              fontWeight: "600",
+              borderRadius: "50px",
+              fontWeight: "700",
               fontSize: "1.1rem",
               display: "inline-flex",
               alignItems: "center",
               gap: "10px",
-              transition: "all 0.3s ease"
+              transition: "all 0.3s ease",
+              boxShadow: "0 10px 20px -5px rgba(0,0,0,0.3)"
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#0da271";
               e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.boxShadow = "0 15px 30px -5px #0a1f44";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "#10b981";
               e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "0 10px 20px -5px rgba(0,0,0,0.3)";
             }}
           >
             📨 Quick Apply via Email
@@ -479,14 +503,15 @@ ${name}
 
         {/* Application Process */}
         <div style={{
-          backgroundColor: "rgba(16, 23, 48, 0.8)",
+          background: "rgba(255,255,255,0.1)",
+          backdropFilter: "blur(8px)",
+          border: "1px solid rgba(255,255,255,0.2)",
           padding: "40px",
           borderRadius: "20px",
-          marginBottom: "60px",
-          border: "1px solid rgba(67, 97, 238, 0.3)"
+          marginBottom: "60px"
         }}>
           <h2 style={{
-            fontSize: "2rem",
+            fontSize: "2.5rem",
             color: "#ffffff",
             marginBottom: "30px",
             textAlign: "center"
@@ -509,20 +534,21 @@ ${name}
                 <div style={{
                   width: "70px",
                   height: "70px",
-                  backgroundColor: "#4361ee",
-                  color: "white",
+                  background: "linear-gradient(135deg, #ffffff, #e0e0e0)",
+                  color: "#0a1f44",
                   borderRadius: "50%",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   fontSize: "1.8rem",
                   fontWeight: "700",
-                  margin: "0 auto 20px"
+                  margin: "0 auto 20px",
+                  boxShadow: "0 10px 20px -5px #000000"
                 }}>
                   {item.icon}
                 </div>
                 <h3 style={{ color: "#ffffff", marginBottom: "10px", fontSize: "1.3rem" }}>{item.title}</h3>
-                <p style={{ color: "#b0c4ff", fontSize: "0.95rem" }}>{item.description}</p>
+                <p style={{ color: "#e0e0e0", fontSize: "0.95rem" }}>{item.description}</p>
               </div>
             ))}
           </div>
@@ -534,21 +560,22 @@ ${name}
             display: "inline-flex",
             alignItems: "center",
             gap: "10px",
-            color: "#4361ee",
+            color: "#ffffff",
             textDecoration: "none",
             fontWeight: "600",
             fontSize: "1.1rem",
-            backgroundColor: "rgba(67, 97, 238, 0.1)",
+            background: "rgba(255,255,255,0.1)",
             padding: "12px 24px",
-            borderRadius: "8px",
-            transition: "all 0.3s ease"
+            borderRadius: "50px",
+            transition: "all 0.3s ease",
+            border: "1px solid rgba(255,255,255,0.3)"
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "rgba(67, 97, 238, 0.2)";
+            e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.2)";
             e.currentTarget.style.paddingLeft = "30px";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "rgba(67, 97, 238, 0.1)";
+            e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.1)";
             e.currentTarget.style.paddingLeft = "24px";
           }}>
             ← Back to Home
@@ -564,8 +591,8 @@ ${name}
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: "rgba(0, 0, 0, 0.8)",
-          backdropFilter: "blur(10px)",
+          backgroundColor: "rgba(0, 0, 0, 0.7)",
+          backdropFilter: "blur(5px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -573,15 +600,15 @@ ${name}
           padding: "20px"
         }}>
           <div style={{
-            backgroundColor: "rgba(16, 23, 48, 0.95)",
+            background: "#ffffff",
             borderRadius: "20px",
             padding: "40px",
             maxWidth: "600px",
             width: "100%",
             maxHeight: "90vh",
             overflowY: "auto",
-            border: "1px solid rgba(67, 97, 238, 0.5)",
-            boxShadow: "0 25px 50px rgba(0, 0, 0, 0.5)"
+            border: "1px solid #e0e0e0",
+            boxShadow: "0 25px 50px -12px #000000"
           }}>
             <div style={{
               display: "flex",
@@ -591,7 +618,7 @@ ${name}
             }}>
               <h2 style={{
                 fontSize: "2rem",
-                color: "#ffffff",
+                color: "#0a1f44",
                 margin: 0
               }}>
                 Apply for {selectedJob?.title}
@@ -601,7 +628,7 @@ ${name}
                 style={{
                   background: "none",
                   border: "none",
-                  color: "#b0c4ff",
+                  color: "#2c3e50",
                   fontSize: "1.5rem",
                   cursor: "pointer",
                   padding: "5px"
@@ -615,7 +642,7 @@ ${name}
               <div style={{ marginBottom: "20px" }}>
                 <label style={{
                   display: "block",
-                  color: "#b0c4ff",
+                  color: "#0a1f44",
                   marginBottom: "8px",
                   fontWeight: "500"
                 }}>
@@ -630,10 +657,10 @@ ${name}
                   style={{
                     width: "100%",
                     padding: "12px 15px",
-                    backgroundColor: "rgba(255, 255, 255, 0.05)",
-                    border: "1px solid rgba(67, 97, 238, 0.3)",
+                    backgroundColor: "#f0f0f0",
+                    border: "1px solid #e0e0e0",
                     borderRadius: "8px",
-                    color: "#ffffff",
+                    color: "#0a1f44",
                     fontSize: "1rem"
                   }}
                   placeholder="Enter your full name"
@@ -643,7 +670,7 @@ ${name}
               <div style={{ marginBottom: "20px" }}>
                 <label style={{
                   display: "block",
-                  color: "#b0c4ff",
+                  color: "#0a1f44",
                   marginBottom: "8px",
                   fontWeight: "500"
                 }}>
@@ -658,10 +685,10 @@ ${name}
                   style={{
                     width: "100%",
                     padding: "12px 15px",
-                    backgroundColor: "rgba(255, 255, 255, 0.05)",
-                    border: "1px solid rgba(67, 97, 238, 0.3)",
+                    backgroundColor: "#f0f0f0",
+                    border: "1px solid #e0e0e0",
                     borderRadius: "8px",
-                    color: "#ffffff",
+                    color: "#0a1f44",
                     fontSize: "1rem"
                   }}
                   placeholder="Enter your email address"
@@ -671,7 +698,7 @@ ${name}
               <div style={{ marginBottom: "20px" }}>
                 <label style={{
                   display: "block",
-                  color: "#b0c4ff",
+                  color: "#0a1f44",
                   marginBottom: "8px",
                   fontWeight: "500"
                 }}>
@@ -685,10 +712,10 @@ ${name}
                   style={{
                     width: "100%",
                     padding: "12px 15px",
-                    backgroundColor: "rgba(255, 255, 255, 0.05)",
-                    border: "1px solid rgba(67, 97, 238, 0.3)",
+                    backgroundColor: "#f0f0f0",
+                    border: "1px solid #e0e0e0",
                     borderRadius: "8px",
-                    color: "#ffffff",
+                    color: "#0a1f44",
                     fontSize: "1rem"
                   }}
                   placeholder="Enter your phone number"
@@ -698,7 +725,7 @@ ${name}
               <div style={{ marginBottom: "20px" }}>
                 <label style={{
                   display: "block",
-                  color: "#b0c4ff",
+                  color: "#0a1f44",
                   marginBottom: "8px",
                   fontWeight: "500"
                 }}>
@@ -713,10 +740,10 @@ ${name}
                   style={{
                     width: "100%",
                     padding: "12px 15px",
-                    backgroundColor: "rgba(255, 255, 255, 0.05)",
-                    border: "1px solid rgba(67, 97, 238, 0.3)",
+                    backgroundColor: "#f0f0f0",
+                    border: "1px solid #e0e0e0",
                     borderRadius: "8px",
-                    color: "#ffffff",
+                    color: "#0a1f44",
                     fontSize: "1rem"
                   }}
                   placeholder="e.g., 3 years in web development"
@@ -726,7 +753,7 @@ ${name}
               <div style={{ marginBottom: "20px" }}>
                 <label style={{
                   display: "block",
-                  color: "#b0c4ff",
+                  color: "#0a1f44",
                   marginBottom: "8px",
                   fontWeight: "500"
                 }}>
@@ -741,10 +768,10 @@ ${name}
                   style={{
                     width: "100%",
                     padding: "12px 15px",
-                    backgroundColor: "rgba(255, 255, 255, 0.05)",
-                    border: "1px solid rgba(67, 97, 238, 0.3)",
+                    backgroundColor: "#f0f0f0",
+                    border: "1px solid #e0e0e0",
                     borderRadius: "8px",
-                    color: "#ffffff",
+                    color: "#0a1f44",
                     fontSize: "1rem",
                     resize: "vertical"
                   }}
@@ -755,7 +782,7 @@ ${name}
               <div style={{ marginBottom: "30px" }}>
                 <label style={{
                   display: "block",
-                  color: "#b0c4ff",
+                  color: "#0a1f44",
                   marginBottom: "8px",
                   fontWeight: "500"
                 }}>
@@ -770,10 +797,10 @@ ${name}
                   style={{
                     width: "100%",
                     padding: "12px 15px",
-                    backgroundColor: "rgba(255, 255, 255, 0.05)",
-                    border: "1px solid rgba(67, 97, 238, 0.3)",
+                    backgroundColor: "#f0f0f0",
+                    border: "1px solid #e0e0e0",
                     borderRadius: "8px",
-                    color: "#ffffff",
+                    color: "#0a1f44",
                     fontSize: "1rem"
                   }}
                   placeholder="Link to your portfolio, GitHub, or resume"
@@ -790,8 +817,8 @@ ${name}
                   onClick={() => setShowApplicationForm(false)}
                   style={{
                     backgroundColor: "transparent",
-                    color: "#b0c4ff",
-                    border: "1px solid rgba(67, 97, 238, 0.3)",
+                    color: "#2c3e50",
+                    border: "1px solid #e0e0e0",
                     padding: "12px 24px",
                     borderRadius: "8px",
                     fontWeight: "600",
@@ -804,7 +831,7 @@ ${name}
                 <button
                   type="submit"
                   style={{
-                    backgroundColor: "#4361ee",
+                    background: "linear-gradient(135deg, #0a1f44, #1e3a8a)",
                     color: "white",
                     border: "none",
                     padding: "12px 24px",
