@@ -1,118 +1,152 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Careers() {
-  const [showApplicationForm, setShowApplicationForm] = useState(false);
-  const [selectedJob, setSelectedJob] = useState(null);
-  const [applicationForm, setApplicationForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    position: '',
-    experience: '',
-    coverLetter: '',
-    portfolio: ''
-  });
+  const navigate = useNavigate();
 
-  // Updated job openings - including AI/ML/DS/GenAI roles, no experience badge
+  // Updated job openings - including AI/ML/DS/GenAI roles and new requested roles
   const jobOpenings = [
     {
       id: 1,
+      title: "Java Developer",
+      department: "Engineering",
+      location: "Remote",
+      type: "Full-time",
+      email: "lohssoftwaresolutions@gmail.com",
+      subject: "Application for Java Developer Position",
+      skills: ["Core Java", "Spring Boot", "Hibernate", "Microservices", "REST APIs", "MySQL"],
+      description: "Develop enterprise-scale applications using Java, Spring Boot, and microservices architecture."
+    },
+    {
+      id: 2,
+      title: "Data Analyst",
+      department: "Data Analytics",
+      location: "Hybrid",
+      type: "Full-time",
+      email: "lohssoftwaresolutions@gmail.com",
+      subject: "Application for Data Analyst Position",
+      skills: ["SQL", "Python", "Excel", "Tableau/Power BI", "Statistics", "Data Visualization"],
+      description: "Analyze complex datasets, create reports, and provide actionable business insights through data analysis."
+    },
+    {
+      id: 3,
+      title: "Business Analyst",
+      department: "Product",
+      location: "Hybrid",
+      type: "Full-time",
+      email: "lohssoftwaresolutions@gmail.com",
+      subject: "Application for Business Analyst Position",
+      skills: ["Requirements Analysis", "UML/BPMN", "Agile/Scrum", "JIRA", "SQL Basics", "Stakeholder Management"],
+      description: "Bridge the gap between business needs and technical solutions through detailed requirements and process modeling."
+    },
+    {
+      id: 4,
+      title: "Azure Cloud Engineer",
+      department: "Cloud Infrastructure",
+      location: "Remote",
+      type: "Full-time",
+      email: "lohssoftwaresolutions@gmail.com",
+      subject: "Application for Azure Cloud Engineer Position",
+      skills: ["Azure Services", "ARM Templates", "Terraform", "Kubernetes", "DevOps", "CI/CD"],
+      description: "Design, implement, and manage cloud solutions on Microsoft Azure platform."
+    },
+    {
+      id: 5,
       title: "Generative AI Engineer",
       department: "AI Research",
       location: "Remote",
       type: "Full-time",
       email: "lohssoftwaresolutions@gmail.com",
       subject: "Application for Generative AI Engineer Position",
-      skills: ["Python", "PyTorch/TensorFlow", "LangChain", "LLMs", "RAG"],
+      skills: ["Python", "PyTorch/TensorFlow", "LangChain", "LLMs", "RAG", "Vector Databases"],
       description: "Develop cutting-edge generative AI applications and integrate large language models into production systems."
     },
     {
-      id: 2,
+      id: 6,
       title: "Data Scientist",
       department: "Data Science",
       location: "Hybrid",
       type: "Full-time",
       email: "lohssoftwaresolutions@gmail.com",
       subject: "Application for Data Scientist Position",
-      skills: ["Python", "Machine Learning", "SQL", "Statistics", "Tableau"],
+      skills: ["Python", "Machine Learning", "SQL", "Statistics", "Tableau", "Deep Learning"],
       description: "Analyze complex datasets, build predictive models, and drive data-informed decisions."
     },
     {
-      id: 3,
+      id: 7,
       title: "Machine Learning Engineer",
       department: "Engineering",
       location: "Remote",
       type: "Full-time",
       email: "lohssoftwaresolutions@gmail.com",
       subject: "Application for Machine Learning Engineer Position",
-      skills: ["Python", "MLOps", "Docker", "Scikit-learn", "AWS SageMaker"],
+      skills: ["Python", "MLOps", "Docker", "Scikit-learn", "AWS SageMaker", "Kubeflow"],
       description: "Design and deploy scalable machine learning pipelines and models."
     },
     {
-      id: 4,
+      id: 8,
       title: "AI/ML Engineer",
       department: "AI Solutions",
       location: "Hybrid",
       type: "Full-time",
       email: "lohssoftwaresolutions@gmail.com",
       subject: "Application for AI/ML Engineer Position",
-      skills: ["Python", "Deep Learning", "NLP", "Computer Vision", "GCP"],
+      skills: ["Python", "Deep Learning", "NLP", "Computer Vision", "GCP", "TensorFlow"],
       description: "Build end-to-end AI solutions, from data preprocessing to model deployment."
     },
     {
-      id: 5,
+      id: 9,
       title: "React Developer",
       department: "Engineering",
       location: "Remote",
       type: "Full-time",
       email: "lohssoftwaresolutions@gmail.com",
       subject: "Application for React Developer Position",
-      skills: ["React", "TypeScript", "Next.js", "Redux", "Tailwind CSS"],
+      skills: ["React", "TypeScript", "Next.js", "Redux", "Tailwind CSS", "GraphQL"],
       description: "Build modern, performant web applications using React and related technologies."
     },
     {
-      id: 6,
+      id: 10,
       title: "Flutter Developer",
       department: "Engineering",
       location: "Remote",
       type: "Full-time",
       email: "lohssoftwaresolutions@gmail.com",
       subject: "Application for Flutter Developer Position",
-      skills: ["Flutter", "Dart", "Mobile UI", "Firebase", "REST APIs"],
+      skills: ["Flutter", "Dart", "Mobile UI", "Firebase", "REST APIs", "GetX/Provider"],
       description: "Develop cross-platform mobile applications with Flutter for iOS and Android."
     },
     {
-      id: 7,
+      id: 11,
       title: "Python Developer",
       department: "Engineering",
       location: "Hybrid",
       type: "Full-time",
       email: "lohssoftwaresolutions@gmail.com",
       subject: "Application for Python Developer Position",
-      skills: ["Python", "Django/Flask", "PostgreSQL", "REST APIs", "AWS"],
+      skills: ["Python", "Django/Flask", "PostgreSQL", "REST APIs", "AWS", "FastAPI"],
       description: "Build scalable backend services and APIs using Python and modern frameworks."
     },
     {
-      id: 8,
+      id: 12,
       title: "DevOps Engineer",
       department: "Engineering",
       location: "Hybrid",
       type: "Full-time",
       email: "lohssoftwaresolutions@gmail.com",
       subject: "Application for DevOps Engineer Position",
-      skills: ["AWS", "Docker", "Kubernetes", "CI/CD", "Terraform"],
+      skills: ["AWS/Azure", "Docker", "Kubernetes", "CI/CD", "Terraform", "Jenkins"],
       description: "Manage cloud infrastructure, automate deployments, and ensure system reliability."
     },
     {
-      id: 9,
+      id: 13,
       title: "UI/UX Designer",
       department: "Design",
       location: "Remote",
       type: "Full-time",
       email: "lohssoftwaresolutions@gmail.com",
       subject: "Application for UI/UX Designer Position",
-      skills: ["Figma", "Adobe XD", "User Research", "Prototyping", "Design Systems"],
+      skills: ["Figma", "Adobe XD", "User Research", "Prototyping", "Design Systems", "Usability Testing"],
       description: "Create intuitive and engaging user interfaces with a focus on user experience."
     }
   ];
@@ -127,56 +161,14 @@ function Careers() {
   ];
 
   const handleApplyClick = (job) => {
-    setSelectedJob(job);
-    setApplicationForm({
-      ...applicationForm,
-      position: job.title
+    // Navigate to contact page with job details in state
+    navigate('/contact', { 
+      state: { 
+        selectedJob: job,
+        applicationSubject: job.subject,
+        applicationBody: `I am interested in applying for the ${job.title} position.\n\nMy qualifications:\n- Experience: [Your Experience]\n- Skills: Matching your requirements\n- Portfolio: [Link]\n\nI look forward to discussing how I can contribute to your team.`
+      } 
     });
-    setShowApplicationForm(true);
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setApplicationForm({
-      ...applicationForm,
-      [name]: value
-    });
-  };
-
-  const generateEmailLink = () => {
-    const { name, email, phone, position, experience, coverLetter, portfolio } = applicationForm;
-    
-    const body = `
-Dear LOHS Hiring Team,
-
-I am writing to apply for the ${position} position.
-
-My details:
-- Name: ${name}
-- Email: ${email}
-- Phone: ${phone}
-- Years of Experience: ${experience}
-
-Cover Letter:
-${coverLetter}
-
-Portfolio/Resume Link: ${portfolio}
-
-I look forward to hearing from you.
-
-Best regards,
-${name}
-    `.trim();
-
-    const subject = selectedJob ? selectedJob.subject : `Application for ${position}`;
-    const toEmail = selectedJob ? selectedJob.email : "lohssoftwaresolutions@gmail.com";
-
-    return `mailto:${toEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    window.location.href = generateEmailLink();
   };
 
   return (
@@ -582,275 +574,6 @@ ${name}
           </Link>
         </div>
       </div>
-
-      {/* Application Form Modal */}
-      {showApplicationForm && (
-        <div style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: "rgba(0, 0, 0, 0.7)",
-          backdropFilter: "blur(5px)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          zIndex: 1000,
-          padding: "20px"
-        }}>
-          <div style={{
-            background: "#ffffff",
-            borderRadius: "20px",
-            padding: "40px",
-            maxWidth: "600px",
-            width: "100%",
-            maxHeight: "90vh",
-            overflowY: "auto",
-            border: "1px solid #e0e0e0",
-            boxShadow: "0 25px 50px -12px #000000"
-          }}>
-            <div style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: "30px"
-            }}>
-              <h2 style={{
-                fontSize: "2rem",
-                color: "#0a1f44",
-                margin: 0
-              }}>
-                Apply for {selectedJob?.title}
-              </h2>
-              <button
-                onClick={() => setShowApplicationForm(false)}
-                style={{
-                  background: "none",
-                  border: "none",
-                  color: "#2c3e50",
-                  fontSize: "1.5rem",
-                  cursor: "pointer",
-                  padding: "5px"
-                }}
-              >
-                ✕
-              </button>
-            </div>
-
-            <form onSubmit={handleSubmit}>
-              <div style={{ marginBottom: "20px" }}>
-                <label style={{
-                  display: "block",
-                  color: "#0a1f44",
-                  marginBottom: "8px",
-                  fontWeight: "500"
-                }}>
-                  Full Name *
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={applicationForm.name}
-                  onChange={handleInputChange}
-                  required
-                  style={{
-                    width: "100%",
-                    padding: "12px 15px",
-                    backgroundColor: "#f0f0f0",
-                    border: "1px solid #e0e0e0",
-                    borderRadius: "8px",
-                    color: "#0a1f44",
-                    fontSize: "1rem"
-                  }}
-                  placeholder="Enter your full name"
-                />
-              </div>
-
-              <div style={{ marginBottom: "20px" }}>
-                <label style={{
-                  display: "block",
-                  color: "#0a1f44",
-                  marginBottom: "8px",
-                  fontWeight: "500"
-                }}>
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={applicationForm.email}
-                  onChange={handleInputChange}
-                  required
-                  style={{
-                    width: "100%",
-                    padding: "12px 15px",
-                    backgroundColor: "#f0f0f0",
-                    border: "1px solid #e0e0e0",
-                    borderRadius: "8px",
-                    color: "#0a1f44",
-                    fontSize: "1rem"
-                  }}
-                  placeholder="Enter your email address"
-                />
-              </div>
-
-              <div style={{ marginBottom: "20px" }}>
-                <label style={{
-                  display: "block",
-                  color: "#0a1f44",
-                  marginBottom: "8px",
-                  fontWeight: "500"
-                }}>
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={applicationForm.phone}
-                  onChange={handleInputChange}
-                  style={{
-                    width: "100%",
-                    padding: "12px 15px",
-                    backgroundColor: "#f0f0f0",
-                    border: "1px solid #e0e0e0",
-                    borderRadius: "8px",
-                    color: "#0a1f44",
-                    fontSize: "1rem"
-                  }}
-                  placeholder="Enter your phone number"
-                />
-              </div>
-
-              <div style={{ marginBottom: "20px" }}>
-                <label style={{
-                  display: "block",
-                  color: "#0a1f44",
-                  marginBottom: "8px",
-                  fontWeight: "500"
-                }}>
-                  Years of Experience *
-                </label>
-                <input
-                  type="text"
-                  name="experience"
-                  value={applicationForm.experience}
-                  onChange={handleInputChange}
-                  required
-                  style={{
-                    width: "100%",
-                    padding: "12px 15px",
-                    backgroundColor: "#f0f0f0",
-                    border: "1px solid #e0e0e0",
-                    borderRadius: "8px",
-                    color: "#0a1f44",
-                    fontSize: "1rem"
-                  }}
-                  placeholder="e.g., 3 years in web development"
-                />
-              </div>
-
-              <div style={{ marginBottom: "20px" }}>
-                <label style={{
-                  display: "block",
-                  color: "#0a1f44",
-                  marginBottom: "8px",
-                  fontWeight: "500"
-                }}>
-                  Cover Letter *
-                </label>
-                <textarea
-                  name="coverLetter"
-                  value={applicationForm.coverLetter}
-                  onChange={handleInputChange}
-                  required
-                  rows="4"
-                  style={{
-                    width: "100%",
-                    padding: "12px 15px",
-                    backgroundColor: "#f0f0f0",
-                    border: "1px solid #e0e0e0",
-                    borderRadius: "8px",
-                    color: "#0a1f44",
-                    fontSize: "1rem",
-                    resize: "vertical"
-                  }}
-                  placeholder="Tell us why you're interested in this position..."
-                />
-              </div>
-
-              <div style={{ marginBottom: "30px" }}>
-                <label style={{
-                  display: "block",
-                  color: "#0a1f44",
-                  marginBottom: "8px",
-                  fontWeight: "500"
-                }}>
-                  Portfolio/Resume Link *
-                </label>
-                <input
-                  type="url"
-                  name="portfolio"
-                  value={applicationForm.portfolio}
-                  onChange={handleInputChange}
-                  required
-                  style={{
-                    width: "100%",
-                    padding: "12px 15px",
-                    backgroundColor: "#f0f0f0",
-                    border: "1px solid #e0e0e0",
-                    borderRadius: "8px",
-                    color: "#0a1f44",
-                    fontSize: "1rem"
-                  }}
-                  placeholder="Link to your portfolio, GitHub, or resume"
-                />
-              </div>
-
-              <div style={{
-                display: "flex",
-                gap: "15px",
-                justifyContent: "flex-end"
-              }}>
-                <button
-                  type="button"
-                  onClick={() => setShowApplicationForm(false)}
-                  style={{
-                    backgroundColor: "transparent",
-                    color: "#2c3e50",
-                    border: "1px solid #e0e0e0",
-                    padding: "12px 24px",
-                    borderRadius: "8px",
-                    fontWeight: "600",
-                    cursor: "pointer",
-                    transition: "all 0.3s ease"
-                  }}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  style={{
-                    background: "linear-gradient(135deg, #0a1f44, #1e3a8a)",
-                    color: "white",
-                    border: "none",
-                    padding: "12px 24px",
-                    borderRadius: "8px",
-                    fontWeight: "600",
-                    cursor: "pointer",
-                    transition: "all 0.3s ease",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px"
-                  }}
-                >
-                  📧 Send Application
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

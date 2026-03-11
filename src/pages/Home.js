@@ -1,46 +1,71 @@
 import { useEffect, useState } from 'react';
-import { FiArrowRight, FiCheck, FiCode, FiCloud, FiSmartphone, FiUsers, FiAward, FiShield, FiGlobe, FiStar, FiTrendingUp, FiTarget, FiClock, FiCalendar, FiBookOpen, FiLayers, FiZap, FiCpu, FiDatabase, FiLock, FiBriefcase, FiMapPin } from 'react-icons/fi';
+import { FiArrowRight, FiCheck, FiCode, FiCloud, FiSmartphone, FiUsers, FiAward, FiShield, FiGlobe, FiStar, FiTrendingUp, FiTarget, FiClock, FiCalendar, FiBookOpen, FiLayers, FiZap, FiCpu, FiDatabase, FiLock, FiBriefcase, FiMapPin, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 function Home() {
-  const [displayText, setDisplayText] = useState('');
-  const [showContent, setShowContent] = useState(false);
-  const fullText = 'Intelligent Digital Architecture';
+  const [showContent, setShowContent] = useState(true);
 
+  // Image slider data
+  const sliderImages = [
+    {
+      url: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      title: "Digital Innovation",
+      description: "Cutting-edge solutions for modern businesses"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      title: "Strategic Consulting",
+      description: "Expert guidance for your digital transformation"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80",
+      title: "Data Analytics",
+      description: "Turn data into actionable insights"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      title: "Team Collaboration",
+      description: "Building high-performance digital teams"
+    }
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Auto-slide every 5 seconds
   useEffect(() => {
-    let index = 0;
-    const typingInterval = setInterval(() => {
-      if (index <= fullText.length) {
-        setDisplayText(fullText.slice(0, index));
-        index++;
-      } else {
-        clearInterval(typingInterval);
-        setTimeout(() => setShowContent(true), 300);
-      }
-    }, 70);
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [sliderImages.length]);
 
-    return () => clearInterval(typingInterval);
-  }, []);
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + sliderImages.length) % sliderImages.length);
+  };
 
   // Training & Placements Data
   const trainingPrograms = [
     {
-      title: 'AI & Data Science',
+      title: 'AI & MACHINE LEARNING',
       description: 'Master machine learning, deep learning, and data analytics with real-world projects.',
       duration: '6 Months',
       format: 'Online + Mentorship',
       icon: <FiCpu size={24} />
     },
     {
-      title: 'Future Tech Stack',
-      description: 'Full-stack development with cloud, DevOps, and microservices architecture.',
+      title: 'GENERATIVE AI ',
+      description: 'Master AI Tools & Content Generation',
       duration: '6 Months',
       format: 'Hybrid',
       icon: <FiZap size={24} />
     },
     {
-      title: 'Business Analytics',
-      description: 'Data-driven decision making with SQL, Tableau, and business intelligence tools.',
+      title: 'DATA SCIENCE ',
+      description: 'Learn Python ,Data Analysis,Statistics & Machine Learning ',
       duration: '5 Months',
       format: 'Online',
       icon: <FiTrendingUp size={24} />
@@ -55,50 +80,22 @@ function Home() {
     { icon: <FiMapPin />, value: 'India', label: 'Countrywide' }
   ];
 
-  // Partner Companies (for carousel)
-  const partnerCompanies = [
-    'Infosys', 'Capgemini', 'Accenture', 'Wipro', 'Cognizant',
-    'TCS', 'HCL', 'Tech Mahindra', 'Virtusa', 'Welforge'
-  ];
-
   // Additional stats
   const strategicPartners = 25;
   const clients = 9;
-
-  // Carousel state
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const itemsPerSlide = 5; // number of logos shown at once
-
-  // Auto-slide every 3 seconds
-  useEffect(() => {
-    if (!showContent) return;
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => 
-        prev + 1 >= Math.ceil(partnerCompanies.length / itemsPerSlide) ? 0 : prev + 1
-      );
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [showContent, partnerCompanies.length]);
-
-  // Calculate visible logos for current slide
-  const getVisibleLogos = () => {
-    const start = currentSlide * itemsPerSlide;
-    return partnerCompanies.slice(start, start + itemsPerSlide);
-  };
 
   return (
     <div style={containerStyle}>
       {/* Background Pattern */}
       <div style={backgroundPatternStyle} />
 
-      {/* Hero Section */}
+      {/* Hero Section with Image Slider */}
       <section style={heroSectionStyle}>
         <div style={heroContentStyle}>
           <div style={logoContainerStyle}></div>
           
           <h1 style={heroHeadingStyle}>
-            {displayText}
-            <span style={cursorStyle}>|</span>
+            Intelligent Digital Architecture
           </h1>
           
           {showContent && (
@@ -152,29 +149,50 @@ function Home() {
           )}
         </div>
         
-        {/* Logo Carousel (replaces previous heroVisual) */}
-        <div style={carouselContainerStyle}>
-          <div style={carouselHeader}>
-            <span style={carouselHeaderText}>Trusted by Industry Leaders</span>
-          </div>
-          <div style={carouselContentStyle}>
-            {getVisibleLogos().map((company, idx) => (
-              <div key={idx} style={logoCardStyle}>
-                <span style={logoText}>{company}</span>
+        {/* Image Slider */}
+        <div style={sliderContainerStyle}>
+          <div style={sliderWrapperStyle}>
+            {sliderImages.map((image, index) => (
+              <div
+                key={index}
+                style={{
+                  ...sliderSlideStyle,
+                  backgroundImage: `linear-gradient(135deg, rgba(10,31,68,0.3) 0%, rgba(11,43,92,0.3) 100%), url(${image.url})`,
+                  opacity: index === currentSlide ? 1 : 0,
+                  transform: `scale(${index === currentSlide ? 1 : 1.1})`,
+                  transition: 'opacity 0.8s ease-in-out, transform 8s ease-in-out',
+                  zIndex: index === currentSlide ? 1 : 0
+                }}
+              >
+                <div style={sliderOverlay}>
+                  <h3 style={sliderTitle}>{image.title}</h3>
+                  <p style={sliderDescription}>{image.description}</p>
+                </div>
               </div>
             ))}
-          </div>
-          <div style={carouselDots}>
-            {Array.from({ length: Math.ceil(partnerCompanies.length / itemsPerSlide) }).map((_, idx) => (
-              <span
-                key={idx}
-                style={{
-                  ...dotStyle,
-                  backgroundColor: idx === currentSlide ? '#ffffff' : 'rgba(255,255,255,0.3)'
-                }}
-                onClick={() => setCurrentSlide(idx)}
-              />
-            ))}
+            
+            {/* Navigation Arrows */}
+            <button style={sliderArrowLeft} onClick={prevSlide}>
+              <FiChevronLeft size={24} />
+            </button>
+            <button style={sliderArrowRight} onClick={nextSlide}>
+              <FiChevronRight size={24} />
+            </button>
+            
+            {/* Slide Indicators */}
+            <div style={sliderDots}>
+              {sliderImages.map((_, index) => (
+                <span
+                  key={index}
+                  style={{
+                    ...sliderDotStyle,
+                    backgroundColor: index === currentSlide ? '#ffffff' : 'rgba(255,255,255,0.5)',
+                    width: index === currentSlide ? '30px' : '10px'
+                  }}
+                  onClick={() => setCurrentSlide(index)}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -279,7 +297,7 @@ function Home() {
 
               <h3 style={companyTitle}>Top Hiring Partners</h3>
               <div style={companyGrid}>
-                {partnerCompanies.map((company, idx) => (
+                {['Infosys', 'TCS', 'Wipro', 'HCL', 'Capgemini', 'Accenture', 'Cognizant', 'Tech Mahindra'].map((company, idx) => (
                   <div key={idx} style={companyBadge}>
                     {company}
                   </div>
@@ -309,13 +327,13 @@ function Home() {
           
           <div style={marqueeContainer}>
             <div style={marqueeContent}>
-              {partnerCompanies.map((company, idx) => (
+              {['Infosys', 'Capgemini', 'Accenture', 'Wipro', 'Cognizant', 'TCS', 'HCL', 'Tech Mahindra', 'Virtusa', 'Welforge'].map((company, idx) => (
                 <div key={idx} style={partnerItem}>
                   <span style={partnerName}>{company}</span>
                 </div>
               ))}
               {/* Duplicate for seamless scrolling */}
-              {partnerCompanies.map((company, idx) => (
+              {['Infosys', 'Capgemini', 'Accenture', 'Wipro', 'Cognizant', 'TCS', 'HCL', 'Tech Mahindra', 'Virtusa', 'Welforge'].map((company, idx) => (
                 <div key={`dup-${idx}`} style={partnerItem}>
                   <span style={partnerName}>{company}</span>
                 </div>
@@ -402,6 +420,37 @@ function Home() {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
+        
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateX(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes scaleIn {
+          from {
+            transform: scale(0.9);
+            opacity: 0;
+          }
+          to {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+        
+        @keyframes zoomIn {
+          from {
+            transform: scale(1);
+          }
+          to {
+            transform: scale(1.1);
+          }
+        }
       `}</style>
     </div>
   );
@@ -456,12 +505,13 @@ const heroSectionStyle = {
   maxWidth: '1400px',
   margin: '0 auto',
   position: 'relative',
-  zIndex: 1
+  zIndex: 1,
+  gap: '40px'
 };
 
 const heroContentStyle = {
   flex: 1,
-  maxWidth: '650px',
+  maxWidth: '600px',
   animation: 'fadeInUp 0.8s ease'
 };
 
@@ -586,72 +636,124 @@ const trustText = {
   fontWeight: '500'
 };
 
-// Carousel Styles (replaces heroVisualStyle)
-const carouselContainerStyle = {
+// Slider Styles
+const sliderContainerStyle = {
   flex: 1,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  paddingLeft: '40px',
-  background: 'rgba(255,255,255,0.1)',
-  backdropFilter: 'blur(10px)',
+  maxWidth: '600px',
+  height: '500px',
   borderRadius: '24px',
-  padding: '40px 20px',
-  border: '1px solid rgba(255,255,255,0.2)',
-  boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)'
+  overflow: 'hidden',
+  boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)',
+  animation: 'scaleIn 0.8s ease'
 };
 
-const carouselHeader = {
-  marginBottom: '20px'
+const sliderWrapperStyle = {
+  position: 'relative',
+  width: '100%',
+  height: '100%'
 };
 
-const carouselHeaderText = {
-  fontSize: '1.2rem',
-  fontWeight: '600',
-  color: '#ffffff',
-  letterSpacing: '0.5px'
-};
-
-const carouselContentStyle = {
+const sliderSlideStyle = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
   display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: '20px',
-  flexWrap: 'wrap',
-  minHeight: '100px'
+  alignItems: 'flex-end',
+  transition: 'opacity 0.8s ease-in-out, transform 8s ease-in-out'
 };
 
-const logoCardStyle = {
-  background: '#ffffff',
-  borderRadius: '12px',
-  padding: '15px 20px',
-  minWidth: '120px',
-  textAlign: 'center',
-  boxShadow: '0 10px 20px -5px rgba(0,0,0,0.3)',
-  border: '1px solid #e0e0e0',
-  transition: 'transform 0.3s ease'
+const sliderOverlay = {
+  background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)',
+  padding: '40px',
+  width: '100%',
+  color: '#ffffff'
 };
 
-const logoText = {
-  fontSize: '1rem',
+const sliderTitle = {
+  fontSize: '2rem',
   fontWeight: '700',
-  color: '#0a1f44'
+  marginBottom: '8px',
+  transform: 'translateY(20px)',
+  animation: 'fadeInUp 0.6s ease forwards'
 };
 
-const carouselDots = {
-  display: 'flex',
-  justifyContent: 'center',
-  gap: '8px',
-  marginTop: '20px'
+const sliderDescription = {
+  fontSize: '1rem',
+  color: '#e0e0e0',
+  marginBottom: '10px',
+  transform: 'translateY(20px)',
+  animation: 'fadeInUp 0.6s ease 0.2s forwards'
 };
 
-const dotStyle = {
-  width: '10px',
-  height: '10px',
+const sliderArrowLeft = {
+  position: 'absolute',
+  left: '20px',
+  top: '50%',
+  transform: 'translateY(-50%)',
+  background: 'rgba(255,255,255,0.3)',
+  border: 'none',
   borderRadius: '50%',
+  width: '40px',
+  height: '40px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  color: '#ffffff',
   cursor: 'pointer',
-  transition: 'background-color 0.3s ease'
+  transition: 'all 0.3s ease',
+  zIndex: 2,
+  backdropFilter: 'blur(5px)',
+  ':hover': {
+    background: 'rgba(255,255,255,0.5)',
+    transform: 'translateY(-50%) scale(1.1)'
+  }
+};
+
+const sliderArrowRight = {
+  position: 'absolute',
+  right: '20px',
+  top: '50%',
+  transform: 'translateY(-50%)',
+  background: 'rgba(255,255,255,0.3)',
+  border: 'none',
+  borderRadius: '50%',
+  width: '40px',
+  height: '40px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  color: '#ffffff',
+  cursor: 'pointer',
+  transition: 'all 0.3s ease',
+  zIndex: 2,
+  backdropFilter: 'blur(5px)',
+  ':hover': {
+    background: 'rgba(255,255,255,0.5)',
+    transform: 'translateY(-50%) scale(1.1)'
+  }
+};
+
+const sliderDots = {
+  position: 'absolute',
+  bottom: '20px',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  display: 'flex',
+  gap: '10px',
+  zIndex: 2
+};
+
+const sliderDotStyle = {
+  height: '10px',
+  borderRadius: '10px',
+  cursor: 'pointer',
+  transition: 'all 0.3s ease',
+  border: 'none'
 };
 
 // Stats Section
@@ -836,7 +938,7 @@ const programsGridStyle = {
 const programCardStyle = {
   background: '#ffffff',
   borderRadius: '16px',
-  padding: '30px',
+  padding: '30px', 
   border: '1px solid #e0e0e0',
   boxShadow: '0 10px 30px -10px rgba(0,0,0,0.2)',
   transition: 'all 0.3s ease'
@@ -849,7 +951,7 @@ const programIcon = {
   borderRadius: '12px',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'center', 
   color: '#ffffff',
   fontSize: '24px',
   marginBottom: '20px'
@@ -997,13 +1099,19 @@ const partnerItem = {
   display: 'flex',
   alignItems: 'center',
   gap: '10px',
-  padding: '10px 20px',
+  padding: '10px 30px',
   background: '#ffffff',
   borderRadius: '40px',
   border: '1px solid #e0e0e0',
   whiteSpace: 'nowrap',
   color: '#0a1f44',
-  fontWeight: '600'
+  fontWeight: '600',
+  boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+  transition: 'all 0.3s ease',
+  ':hover': {
+    transform: 'scale(1.05)',
+    boxShadow: '0 8px 25px rgba(0,0,0,0.2)'
+  }
 };
 
 const partnerName = {
