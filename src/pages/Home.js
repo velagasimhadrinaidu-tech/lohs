@@ -306,9 +306,7 @@ function Home() {
 
               <div style={placementCTAContainer}>
                 <Link to="/training-placements" style={{ textDecoration: 'none' }}>
-                  <button style={placementCTAButton}>
-                    Explore Programs →
-                  </button>
+                 
                 </Link>
               </div>
             </div>

@@ -21,12 +21,35 @@ function Contact() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
-    setFormData({ name: '', email: '', message: '' });
+    
+    const submissionData = {
+      ...formData,
+      access_key: "1c999123-f725-4212-ac82-21dc6ebfdb43"
+    };
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(submissionData)
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setIsSubmitted(true);
+        setTimeout(() => setIsSubmitted(false), 3000);
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        console.error("Error submitting form", result);
+      }
+    } catch (error) {
+      console.error("Error submitting form", error);
+    }
   };
 
   const sendChatMessage = () => {
