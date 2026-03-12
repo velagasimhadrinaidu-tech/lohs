@@ -15,7 +15,7 @@ function TrainingPlacements() {
       description: "Our placement team works continuously with students to ensure job opportunities within 120–180 days."
     },
     {
-      title: "100+ Hiring Partners",
+      title: "100+ Hiring Partners",   
       description: "We collaborate with more than 100 hiring partners including leading MNC companies."
     },
     {
